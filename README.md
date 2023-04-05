@@ -1,4 +1,12 @@
-# github.com/speakeasy-sdks/lago-go
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/6267663/230070609-43e6bc4c-e839-49ac-82b8-04ebc5ff3a89.svg" width="250">
+    <h1>Go SDK</h1>
+   <p>Open-source metering and usage-based billing</p>
+   <a href="https://doc.getlago.com/docs/api/intro"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=000&style=for-the-badge" /></a>
+   <a href="https://github.com/speakeasy-sdks/lago-go/actions"><img src="https://img.shields.io/github/actions/workflow/status/speakeasy-sdks/lago-go/speakeasy_sdk_generation.yml?style=for-the-badge" /></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" /></a>
+  <a href="https://github.com/speakeasy-sdks/lago-go/releases"><img src="https://img.shields.io/github/v/release/speakeasy-sdks/lago-go?sort=semver&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation -->
 ## SDK Installation
