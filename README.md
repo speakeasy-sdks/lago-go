@@ -30,8 +30,8 @@ import (
 )
 
 func main() {
-    s := sdk.New(
-        sdk.WithSecurity(shared.Security{
+    s := lago.New(
+        lago.WithSecurity(shared.Security{
             BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
         }),
     )
