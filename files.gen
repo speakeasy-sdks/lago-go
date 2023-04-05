@@ -11,7 +11,7 @@ plans.go
 subscriptions.go
 wallets.go
 webhooks.go
-sdk.go
+lago.go
 go.mod
 go.sum
 pkg/types/date.go
