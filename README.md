@@ -36,11 +36,11 @@ func main() {
         }),
     )
 
+    ctx := context.Background()    
     req := operations.FindInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
     }
 
-    ctx := context.Background()
     res, err := s.Invoices.Find(ctx, req)
     if err != nil {
         log.Fatal(err)
