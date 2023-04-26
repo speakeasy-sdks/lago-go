@@ -133,7 +133,10 @@ func (s *plans) Create(ctx context.Context, request shared.PlanInput) (*operatio
 // Delete a plan
 func (s *plans) Destroy(ctx context.Context, request operations.DestroyPlanRequest) (*operations.DestroyPlanResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -198,7 +201,10 @@ func (s *plans) Destroy(ctx context.Context, request operations.DestroyPlanReque
 // Return a single plan
 func (s *plans) Find(ctx context.Context, request operations.FindPlanRequest) (*operations.FindPlanResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -322,7 +328,10 @@ func (s *plans) FindAll(ctx context.Context, request operations.FindAllPlansRequ
 // Update an existing plan by code
 func (s *plans) Update(ctx context.Context, request operations.UpdatePlanRequest) (*operations.UpdatePlanResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PlanInput", "json")
 	if err != nil {

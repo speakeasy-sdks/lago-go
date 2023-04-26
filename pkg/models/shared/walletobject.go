@@ -16,6 +16,10 @@ const (
 	WalletObjectStatusEnumTerminated WalletObjectStatusEnum = "terminated"
 )
 
+func (e WalletObjectStatusEnum) ToPointer() *WalletObjectStatusEnum {
+	return &e
+}
+
 func (e *WalletObjectStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

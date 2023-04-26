@@ -285,7 +285,10 @@ func (s *events) Create(ctx context.Context, request shared.EventInput) (*operat
 // Return a single event
 func (s *events) Find(ctx context.Context, request operations.FindEventRequest) (*operations.FindEventResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/events/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/events/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

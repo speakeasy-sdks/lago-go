@@ -208,7 +208,10 @@ func (s *wallets) CreateTransaction(ctx context.Context, request shared.WalletTr
 // Delete a wallet
 func (s *wallets) Destroy(ctx context.Context, request operations.DestroyWalletRequest) (*operations.DestroyWalletResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -283,7 +286,10 @@ func (s *wallets) Destroy(ctx context.Context, request operations.DestroyWalletR
 // Return a wallet
 func (s *wallets) Find(ctx context.Context, request operations.FindWalletRequest) (*operations.FindWalletResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -407,7 +413,10 @@ func (s *wallets) FindAll(ctx context.Context, request operations.FindAllWallets
 // Find all wallet transactions for certain wallet
 func (s *wallets) FindAllTransactions(ctx context.Context, request operations.FindAllWalletTransactionsRequest) (*operations.FindAllWalletTransactionsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/wallets/{id}/wallet_transactions", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}/wallet_transactions", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -476,7 +485,10 @@ func (s *wallets) FindAllTransactions(ctx context.Context, request operations.Fi
 // Update an existing wallet
 func (s *wallets) Update(ctx context.Context, request operations.UpdateWalletRequest) (*operations.UpdateWalletResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "WalletUpdateInput", "json")
 	if err != nil {

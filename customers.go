@@ -123,7 +123,10 @@ func (s *customers) Create(ctx context.Context, request shared.CustomerInput) (*
 // Return a customer current usage
 func (s *customers) CurrentUsage(ctx context.Context, request operations.FindCustomerCurrentUsageRequest) (*operations.FindCustomerCurrentUsageResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/current_usage", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/current_usage", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -192,7 +195,10 @@ func (s *customers) CurrentUsage(ctx context.Context, request operations.FindCus
 // Delete customer's appplied coupon
 func (s *customers) DeleteAppliedCoupon(ctx context.Context, request operations.DeleteAppliedCouponRequest) (*operations.DeleteAppliedCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/applied_coupons/{applied_coupon_id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/applied_coupons/{applied_coupon_id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -257,7 +263,10 @@ func (s *customers) DeleteAppliedCoupon(ctx context.Context, request operations.
 // Return the deleted customer
 func (s *customers) Destroy(ctx context.Context, request operations.DeleteCustomerRequest) (*operations.DeleteCustomerResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/customers/{external_id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{external_id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -322,7 +331,10 @@ func (s *customers) Destroy(ctx context.Context, request operations.DeleteCustom
 // Return a single customer
 func (s *customers) Find(ctx context.Context, request operations.FindCustomerRequest) (*operations.FindCustomerResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/customers/{external_id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{external_id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -446,7 +458,10 @@ func (s *customers) FindAll(ctx context.Context, request operations.FindAllCusto
 // Get customer portal URL
 func (s *customers) PortalURL(ctx context.Context, request operations.GetCustomerPortalURLRequest) (*operations.GetCustomerPortalURLResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/portal_url", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/portal_url", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

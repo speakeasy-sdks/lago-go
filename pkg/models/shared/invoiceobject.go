@@ -16,6 +16,10 @@ const (
 	InvoiceObjectInvoiceTypeEnumCredit       InvoiceObjectInvoiceTypeEnum = "credit"
 )
 
+func (e InvoiceObjectInvoiceTypeEnum) ToPointer() *InvoiceObjectInvoiceTypeEnum {
+	return &e
+}
+
 func (e *InvoiceObjectInvoiceTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -42,6 +46,10 @@ const (
 	InvoiceObjectPaymentStatusEnumFailed    InvoiceObjectPaymentStatusEnum = "failed"
 )
 
+func (e InvoiceObjectPaymentStatusEnum) ToPointer() *InvoiceObjectPaymentStatusEnum {
+	return &e
+}
+
 func (e *InvoiceObjectPaymentStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -66,6 +74,10 @@ const (
 	InvoiceObjectStatusEnumDraft     InvoiceObjectStatusEnum = "draft"
 	InvoiceObjectStatusEnumFinalized InvoiceObjectStatusEnum = "finalized"
 )
+
+func (e InvoiceObjectStatusEnum) ToPointer() *InvoiceObjectStatusEnum {
+	return &e
+}
 
 func (e *InvoiceObjectStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string

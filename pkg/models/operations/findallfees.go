@@ -21,6 +21,10 @@ const (
 	FindAllFeesFeeTypeEnumInstantCharge FindAllFeesFeeTypeEnum = "instant_charge"
 )
 
+func (e FindAllFeesFeeTypeEnum) ToPointer() *FindAllFeesFeeTypeEnum {
+	return &e
+}
+
 func (e *FindAllFeesFeeTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -52,6 +56,10 @@ const (
 	FindAllFeesPaymentStatusEnumFailed    FindAllFeesPaymentStatusEnum = "failed"
 	FindAllFeesPaymentStatusEnumRefunded  FindAllFeesPaymentStatusEnum = "refunded"
 )
+
+func (e FindAllFeesPaymentStatusEnum) ToPointer() *FindAllFeesPaymentStatusEnum {
+	return &e
+}
 
 func (e *FindAllFeesPaymentStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string

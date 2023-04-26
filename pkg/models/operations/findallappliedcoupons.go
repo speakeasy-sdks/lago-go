@@ -17,6 +17,10 @@ const (
 	FindAllAppliedCouponsStatusEnumTerminated FindAllAppliedCouponsStatusEnum = "terminated"
 )
 
+func (e FindAllAppliedCouponsStatusEnum) ToPointer() *FindAllAppliedCouponsStatusEnum {
+	return &e
+}
+
 func (e *FindAllAppliedCouponsStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

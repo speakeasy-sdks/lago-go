@@ -17,6 +17,10 @@ const (
 	FeeObjectItemItemTypeEnumWalletTransaction FeeObjectItemItemTypeEnum = "WalletTransaction"
 )
 
+func (e FeeObjectItemItemTypeEnum) ToPointer() *FeeObjectItemItemTypeEnum {
+	return &e
+}
+
 func (e *FeeObjectItemItemTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -46,6 +50,10 @@ const (
 	FeeObjectItemTypeEnumSubscription FeeObjectItemTypeEnum = "subscription"
 	FeeObjectItemTypeEnumCredit       FeeObjectItemTypeEnum = "credit"
 )
+
+func (e FeeObjectItemTypeEnum) ToPointer() *FeeObjectItemTypeEnum {
+	return &e
+}
 
 func (e *FeeObjectItemTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
@@ -84,6 +92,10 @@ const (
 	FeeObjectPaymentStatusEnumFailed    FeeObjectPaymentStatusEnum = "failed"
 	FeeObjectPaymentStatusEnumRefunded  FeeObjectPaymentStatusEnum = "refunded"
 )
+
+func (e FeeObjectPaymentStatusEnum) ToPointer() *FeeObjectPaymentStatusEnum {
+	return &e
+}
 
 func (e *FeeObjectPaymentStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string

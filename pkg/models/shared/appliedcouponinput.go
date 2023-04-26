@@ -15,6 +15,10 @@ const (
 	AppliedCouponInputAppliedCouponFrequencyEnumRecurring AppliedCouponInputAppliedCouponFrequencyEnum = "recurring"
 )
 
+func (e AppliedCouponInputAppliedCouponFrequencyEnum) ToPointer() *AppliedCouponInputAppliedCouponFrequencyEnum {
+	return &e
+}
+
 func (e *AppliedCouponInputAppliedCouponFrequencyEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

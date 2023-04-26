@@ -218,7 +218,10 @@ func (s *addOns) Create(ctx context.Context, request shared.AddOnInput) (*operat
 // Delete an add-on
 func (s *addOns) Destroy(ctx context.Context, request operations.DestroyAddOnRequest) (*operations.DestroyAddOnResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -283,7 +286,10 @@ func (s *addOns) Destroy(ctx context.Context, request operations.DestroyAddOnReq
 // Return a single add-on
 func (s *addOns) Find(ctx context.Context, request operations.FindAddOnRequest) (*operations.FindAddOnResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -407,7 +413,10 @@ func (s *addOns) FindAll(ctx context.Context, request operations.FindAllAddOnsRe
 // Update an existing add-on by code
 func (s *addOns) Update(ctx context.Context, request operations.UpdateAddOnRequest) (*operations.UpdateAddOnResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "AddOnInput", "json")
 	if err != nil {

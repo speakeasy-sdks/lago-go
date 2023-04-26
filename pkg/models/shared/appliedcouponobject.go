@@ -16,6 +16,10 @@ const (
 	AppliedCouponObjectFrequencyEnumRecurring AppliedCouponObjectFrequencyEnum = "recurring"
 )
 
+func (e AppliedCouponObjectFrequencyEnum) ToPointer() *AppliedCouponObjectFrequencyEnum {
+	return &e
+}
+
 func (e *AppliedCouponObjectFrequencyEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -39,6 +43,10 @@ const (
 	AppliedCouponObjectStatusEnumActive     AppliedCouponObjectStatusEnum = "active"
 	AppliedCouponObjectStatusEnumTerminated AppliedCouponObjectStatusEnum = "terminated"
 )
+
+func (e AppliedCouponObjectStatusEnum) ToPointer() *AppliedCouponObjectStatusEnum {
+	return &e
+}
 
 func (e *AppliedCouponObjectStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string

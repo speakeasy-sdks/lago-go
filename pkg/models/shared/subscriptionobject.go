@@ -16,6 +16,10 @@ const (
 	SubscriptionObjectBillingTimeEnumAnniversary SubscriptionObjectBillingTimeEnum = "anniversary"
 )
 
+func (e SubscriptionObjectBillingTimeEnum) ToPointer() *SubscriptionObjectBillingTimeEnum {
+	return &e
+}
+
 func (e *SubscriptionObjectBillingTimeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -41,6 +45,10 @@ const (
 	SubscriptionObjectStatusEnumTerminated SubscriptionObjectStatusEnum = "terminated"
 	SubscriptionObjectStatusEnumCanceled   SubscriptionObjectStatusEnum = "canceled"
 )
+
+func (e SubscriptionObjectStatusEnum) ToPointer() *SubscriptionObjectStatusEnum {
+	return &e
+}
 
 func (e *SubscriptionObjectStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string

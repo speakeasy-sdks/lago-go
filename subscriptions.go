@@ -133,7 +133,10 @@ func (s *subscriptions) Create(ctx context.Context, request shared.SubscriptionC
 // Terminate a subscription
 func (s *subscriptions) Destroy(ctx context.Context, request operations.DestroySubscriptionRequest) (*operations.DestroySubscriptionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/subscriptions/{external_id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/subscriptions/{external_id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -277,7 +280,10 @@ func (s *subscriptions) FindAll(ctx context.Context, request operations.FindAllS
 // Update an existing subscription by external ID
 func (s *subscriptions) Update(ctx context.Context, request operations.UpdateSubscriptionRequest) (*operations.UpdateSubscriptionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/subscriptions/{external_id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/subscriptions/{external_id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "SubscriptionUpdateInput", "json")
 	if err != nil {

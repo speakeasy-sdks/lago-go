@@ -19,6 +19,10 @@ const (
 	ChargeObjectChargeModelEnumVolume     ChargeObjectChargeModelEnum = "volume"
 )
 
+func (e ChargeObjectChargeModelEnum) ToPointer() *ChargeObjectChargeModelEnum {
+	return &e
+}
+
 func (e *ChargeObjectChargeModelEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

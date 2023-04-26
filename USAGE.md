@@ -2,12 +2,11 @@
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/speakeasy-sdks/lago-go"
-    "github.com/speakeasy-sdks/lago-go/pkg/models/shared"
-    "github.com/speakeasy-sdks/lago-go/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/speakeasy-sdks/lago-go"
+	"github.com/speakeasy-sdks/lago-go/pkg/models/operations"
 )
 
 func main() {

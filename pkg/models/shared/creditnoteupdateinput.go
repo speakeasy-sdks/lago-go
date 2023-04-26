@@ -16,6 +16,10 @@ const (
 	CreditNoteUpdateInputCreditNoteRefundStatusEnumFailed    CreditNoteUpdateInputCreditNoteRefundStatusEnum = "failed"
 )
 
+func (e CreditNoteUpdateInputCreditNoteRefundStatusEnum) ToPointer() *CreditNoteUpdateInputCreditNoteRefundStatusEnum {
+	return &e
+}
+
 func (e *CreditNoteUpdateInputCreditNoteRefundStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

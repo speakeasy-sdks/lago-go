@@ -15,6 +15,10 @@ const (
 	CreditObjectInvoicePaymentStatusEnumFailed    CreditObjectInvoicePaymentStatusEnum = "failed"
 )
 
+func (e CreditObjectInvoicePaymentStatusEnum) ToPointer() *CreditObjectInvoicePaymentStatusEnum {
+	return &e
+}
+
 func (e *CreditObjectInvoicePaymentStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

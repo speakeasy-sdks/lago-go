@@ -24,6 +24,10 @@ const (
 	CreditNoteInputCreditNoteReasonEnumOther                 CreditNoteInputCreditNoteReasonEnum = "other"
 )
 
+func (e CreditNoteInputCreditNoteReasonEnum) ToPointer() *CreditNoteInputCreditNoteReasonEnum {
+	return &e
+}
+
 func (e *CreditNoteInputCreditNoteReasonEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -18,6 +18,10 @@ const (
 	FindAllInvoicesStatusEnumFinalized FindAllInvoicesStatusEnum = "finalized"
 )
 
+func (e FindAllInvoicesStatusEnum) ToPointer() *FindAllInvoicesStatusEnum {
+	return &e
+}
+
 func (e *FindAllInvoicesStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

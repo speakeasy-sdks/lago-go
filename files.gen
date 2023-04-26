@@ -15,6 +15,7 @@ lago.go
 go.mod
 go.sum
 pkg/types/date.go
+pkg/types/datetime.go
 pkg/utils/contenttype.go
 pkg/utils/form.go
 pkg/utils/headers.go
@@ -170,4 +171,18 @@ pkg/models/shared/wallettransactioninput.go
 pkg/models/shared/wallets.go
 pkg/models/shared/walletupdateinput.go
 pkg/models/shared/security.go
+docs/lago/README.md
+docs/addons/README.md
+docs/billablemetrics/README.md
+docs/coupons/README.md
+docs/creditnotes/README.md
+docs/customers/README.md
+docs/events/README.md
+docs/fees/README.md
+docs/invoices/README.md
+docs/organizations/README.md
+docs/plans/README.md
+docs/subscriptions/README.md
+docs/wallets/README.md
+docs/webhooks/README.md
 USAGE.md

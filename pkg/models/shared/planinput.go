@@ -18,6 +18,10 @@ const (
 	PlanInputPlanChargesChargeModelEnumVolume     PlanInputPlanChargesChargeModelEnum = "volume"
 )
 
+func (e PlanInputPlanChargesChargeModelEnum) ToPointer() *PlanInputPlanChargesChargeModelEnum {
+	return &e
+}
+
 func (e *PlanInputPlanChargesChargeModelEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -63,6 +67,10 @@ const (
 	PlanInputPlanIntervalEnumMonthly PlanInputPlanIntervalEnum = "monthly"
 	PlanInputPlanIntervalEnumYearly  PlanInputPlanIntervalEnum = "yearly"
 )
+
+func (e PlanInputPlanIntervalEnum) ToPointer() *PlanInputPlanIntervalEnum {
+	return &e
+}
 
 func (e *PlanInputPlanIntervalEnum) UnmarshalJSON(data []byte) error {
 	var s string

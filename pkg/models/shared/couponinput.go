@@ -20,6 +20,10 @@ const (
 	CouponInputCouponCouponTypeEnumPercentage  CouponInputCouponCouponTypeEnum = "percentage"
 )
 
+func (e CouponInputCouponCouponTypeEnum) ToPointer() *CouponInputCouponCouponTypeEnum {
+	return &e
+}
+
 func (e *CouponInputCouponCouponTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -44,6 +48,10 @@ const (
 	CouponInputCouponExpirationEnumTimeLimit    CouponInputCouponExpirationEnum = "time_limit"
 )
 
+func (e CouponInputCouponExpirationEnum) ToPointer() *CouponInputCouponExpirationEnum {
+	return &e
+}
+
 func (e *CouponInputCouponExpirationEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -67,6 +75,10 @@ const (
 	CouponInputCouponFrequencyEnumOnce      CouponInputCouponFrequencyEnum = "once"
 	CouponInputCouponFrequencyEnumRecurring CouponInputCouponFrequencyEnum = "recurring"
 )
+
+func (e CouponInputCouponFrequencyEnum) ToPointer() *CouponInputCouponFrequencyEnum {
+	return &e
+}
 
 func (e *CouponInputCouponFrequencyEnum) UnmarshalJSON(data []byte) error {
 	var s string

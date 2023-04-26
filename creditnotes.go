@@ -122,7 +122,10 @@ func (s *creditNotes) Create(ctx context.Context, request shared.CreditNoteInput
 // Download an existing credit note
 func (s *creditNotes) Download(ctx context.Context, request operations.DownloadCreditNoteRequest) (*operations.DownloadCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}/download", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -187,7 +190,10 @@ func (s *creditNotes) Download(ctx context.Context, request operations.DownloadC
 // Return a single credit note
 func (s *creditNotes) Find(ctx context.Context, request operations.FindCreditNoteRequest) (*operations.FindCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -311,7 +317,10 @@ func (s *creditNotes) FindAll(ctx context.Context, request operations.FindAllCre
 // Update an existing credit note
 func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCreditNoteRequest) (*operations.UpdateCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CreditNoteUpdateInput", "json")
 	if err != nil {
@@ -406,7 +415,10 @@ func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCredi
 // Void an existing credit note
 func (s *creditNotes) Void(ctx context.Context, request operations.VoidCreditNoteRequest) (*operations.VoidCreditNoteResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}/void", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}/void", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {

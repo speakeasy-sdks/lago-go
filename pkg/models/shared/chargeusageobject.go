@@ -18,6 +18,10 @@ const (
 	ChargeUsageObjectBillableMetricAggregationTypeEnumRecurringCountAgg ChargeUsageObjectBillableMetricAggregationTypeEnum = "recurring_count_agg"
 )
 
+func (e ChargeUsageObjectBillableMetricAggregationTypeEnum) ToPointer() *ChargeUsageObjectBillableMetricAggregationTypeEnum {
+	return &e
+}
+
 func (e *ChargeUsageObjectBillableMetricAggregationTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -58,6 +62,10 @@ const (
 	ChargeUsageObjectChargeChargeModelEnumPercentage ChargeUsageObjectChargeChargeModelEnum = "percentage"
 	ChargeUsageObjectChargeChargeModelEnumVolume     ChargeUsageObjectChargeChargeModelEnum = "volume"
 )
+
+func (e ChargeUsageObjectChargeChargeModelEnum) ToPointer() *ChargeUsageObjectChargeChargeModelEnum {
+	return &e
+}
 
 func (e *ChargeUsageObjectChargeChargeModelEnum) UnmarshalJSON(data []byte) error {
 	var s string

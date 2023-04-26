@@ -38,7 +38,10 @@ func newFees(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 // Return a single fee
 func (s *fees) Find(ctx context.Context, request operations.FindFeeRequest) (*operations.FindFeeResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/fees/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/fees/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -172,7 +175,10 @@ func (s *fees) FindAll(ctx context.Context, request operations.FindAllFeesReques
 // Update an existing fee
 func (s *fees) Update(ctx context.Context, request operations.UpdateFeeRequest) (*operations.UpdateFeeResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/fees/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/fees/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "FeeUpdateInput", "json")
 	if err != nil {

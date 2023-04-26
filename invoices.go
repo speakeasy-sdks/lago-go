@@ -38,7 +38,10 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 // Download an existing invoice
 func (s *invoices) Download(ctx context.Context, request operations.DownloadInvoiceRequest) (*operations.DownloadInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/download", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -103,7 +106,10 @@ func (s *invoices) Download(ctx context.Context, request operations.DownloadInvo
 // Finalize a draft invoice
 func (s *invoices) Finalize(ctx context.Context, request operations.FinalizeInvoiceRequest) (*operations.FinalizeInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/finalize", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/finalize", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -168,7 +174,10 @@ func (s *invoices) Finalize(ctx context.Context, request operations.FinalizeInvo
 // Return a single invoice
 func (s *invoices) Find(ctx context.Context, request operations.FindInvoiceRequest) (*operations.FindInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -292,7 +301,10 @@ func (s *invoices) FindAll(ctx context.Context, request operations.FindAllInvoic
 // Retry invoice payment
 func (s *invoices) Retry(ctx context.Context, request operations.RetryPaymentRequest) (*operations.RetryPaymentResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/retry_payment", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/retry_payment", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
 	if err != nil {
@@ -358,7 +370,10 @@ func (s *invoices) Retry(ctx context.Context, request operations.RetryPaymentReq
 // Update an existing invoice
 func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceRequest) (*operations.UpdateInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "InvoiceInput", "json")
 	if err != nil {
@@ -453,7 +468,10 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 // Refresh a draft invoice
 func (s *invoices) Void(ctx context.Context, request operations.RefreshInvoiceRequest) (*operations.RefreshInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/refresh", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/refresh", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {

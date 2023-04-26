@@ -16,6 +16,10 @@ const (
 	SubscriptionCreateInputSubscriptionBillingTimeEnumAnniversary SubscriptionCreateInputSubscriptionBillingTimeEnum = "anniversary"
 )
 
+func (e SubscriptionCreateInputSubscriptionBillingTimeEnum) ToPointer() *SubscriptionCreateInputSubscriptionBillingTimeEnum {
+	return &e
+}
+
 func (e *SubscriptionCreateInputSubscriptionBillingTimeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

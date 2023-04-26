@@ -17,6 +17,10 @@ const (
 	CreditNoteObjectCreditStatusEnumVoided    CreditNoteObjectCreditStatusEnum = "voided"
 )
 
+func (e CreditNoteObjectCreditStatusEnum) ToPointer() *CreditNoteObjectCreditStatusEnum {
+	return &e
+}
+
 func (e *CreditNoteObjectCreditStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -46,6 +50,10 @@ const (
 	CreditNoteObjectReasonEnumFraudulentCharge      CreditNoteObjectReasonEnum = "fraudulent_charge"
 	CreditNoteObjectReasonEnumOther                 CreditNoteObjectReasonEnum = "other"
 )
+
+func (e CreditNoteObjectReasonEnum) ToPointer() *CreditNoteObjectReasonEnum {
+	return &e
+}
 
 func (e *CreditNoteObjectReasonEnum) UnmarshalJSON(data []byte) error {
 	var s string
@@ -79,6 +87,10 @@ const (
 	CreditNoteObjectRefundStatusEnumSucceeded CreditNoteObjectRefundStatusEnum = "succeeded"
 	CreditNoteObjectRefundStatusEnumFailed    CreditNoteObjectRefundStatusEnum = "failed"
 )
+
+func (e CreditNoteObjectRefundStatusEnum) ToPointer() *CreditNoteObjectRefundStatusEnum {
+	return &e
+}
 
 func (e *CreditNoteObjectRefundStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string

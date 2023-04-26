@@ -16,6 +16,10 @@ const (
 	WalletTransactionObjectStatusEnumSettled WalletTransactionObjectStatusEnum = "settled"
 )
 
+func (e WalletTransactionObjectStatusEnum) ToPointer() *WalletTransactionObjectStatusEnum {
+	return &e
+}
+
 func (e *WalletTransactionObjectStatusEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
@@ -39,6 +43,10 @@ const (
 	WalletTransactionObjectTransactionTypeEnumInbound  WalletTransactionObjectTransactionTypeEnum = "inbound"
 	WalletTransactionObjectTransactionTypeEnumOutbound WalletTransactionObjectTransactionTypeEnum = "outbound"
 )
+
+func (e WalletTransactionObjectTransactionTypeEnum) ToPointer() *WalletTransactionObjectTransactionTypeEnum {
+	return &e
+}
 
 func (e *WalletTransactionObjectTransactionTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string

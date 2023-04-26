@@ -17,6 +17,10 @@ const (
 	PlanObjectIntervalEnumYearly  PlanObjectIntervalEnum = "yearly"
 )
 
+func (e PlanObjectIntervalEnum) ToPointer() *PlanObjectIntervalEnum {
+	return &e
+}
+
 func (e *PlanObjectIntervalEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

@@ -19,6 +19,10 @@ const (
 	BillableMetricObjectAggregationTypeEnumRecurringCountAgg BillableMetricObjectAggregationTypeEnum = "recurring_count_agg"
 )
 
+func (e BillableMetricObjectAggregationTypeEnum) ToPointer() *BillableMetricObjectAggregationTypeEnum {
+	return &e
+}
+
 func (e *BillableMetricObjectAggregationTypeEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {

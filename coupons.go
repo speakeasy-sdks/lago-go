@@ -277,7 +277,10 @@ func (s *coupons) Create(ctx context.Context, request shared.CouponInput) (*oper
 // Delete a coupon
 func (s *coupons) Destroy(ctx context.Context, request operations.DestroyCouponRequest) (*operations.DestroyCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -342,7 +345,10 @@ func (s *coupons) Destroy(ctx context.Context, request operations.DestroyCouponR
 // Return a single coupon
 func (s *coupons) Find(ctx context.Context, request operations.FindCouponRequest) (*operations.FindCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -466,7 +472,10 @@ func (s *coupons) FindAll(ctx context.Context, request operations.FindAllCoupons
 // Update an existing coupon by code
 func (s *coupons) Update(ctx context.Context, request operations.UpdateCouponRequest) (*operations.UpdateCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CouponInput", "json")
 	if err != nil {

@@ -14,6 +14,10 @@ const (
 	OrganizationInputOrganizationEmailSettingsEnumCreditNoteCreated OrganizationInputOrganizationEmailSettingsEnum = "credit_note.created"
 )
 
+func (e OrganizationInputOrganizationEmailSettingsEnum) ToPointer() *OrganizationInputOrganizationEmailSettingsEnum {
+	return &e
+}
+
 func (e *OrganizationInputOrganizationEmailSettingsEnum) UnmarshalJSON(data []byte) error {
 	var s string
 	if err := json.Unmarshal(data, &s); err != nil {
