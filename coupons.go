@@ -36,6 +36,7 @@ func newCoupons(defaultClient, securityClient HTTPClient, serverURL, language, s
 
 // AppliedCoupons - Find Applied Coupons
 // Find all applied coupons
+
 func (s *coupons) AppliedCoupons(ctx context.Context, request operations.FindAllAppliedCouponsRequest) (*operations.FindAllAppliedCouponsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/applied_coupons"
@@ -95,6 +96,7 @@ func (s *coupons) AppliedCoupons(ctx context.Context, request operations.FindAll
 
 // Apply - Apply a coupon to a customer
 // Apply a coupon to a customer
+
 func (s *coupons) Apply(ctx context.Context, request shared.AppliedCouponInput) (*operations.ApplyCouponResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/applied_coupons"
@@ -190,6 +192,7 @@ func (s *coupons) Apply(ctx context.Context, request shared.AppliedCouponInput) 
 
 // Create - Create a new coupon
 // Create a new coupon
+
 func (s *coupons) Create(ctx context.Context, request shared.CouponInput) (*operations.CreateCouponResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/coupons"
@@ -275,9 +278,13 @@ func (s *coupons) Create(ctx context.Context, request shared.CouponInput) (*oper
 
 // Destroy - Delete a coupon
 // Delete a coupon
+
 func (s *coupons) Destroy(ctx context.Context, request operations.DestroyCouponRequest) (*operations.DestroyCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -340,9 +347,13 @@ func (s *coupons) Destroy(ctx context.Context, request operations.DestroyCouponR
 
 // Find - Find coupon by code
 // Return a single coupon
+
 func (s *coupons) Find(ctx context.Context, request operations.FindCouponRequest) (*operations.FindCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -405,6 +416,7 @@ func (s *coupons) Find(ctx context.Context, request operations.FindCouponRequest
 
 // FindAll - Find Coupons
 // Find all coupons in certain organisation
+
 func (s *coupons) FindAll(ctx context.Context, request operations.FindAllCouponsRequest) (*operations.FindAllCouponsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/coupons"
@@ -464,9 +476,13 @@ func (s *coupons) FindAll(ctx context.Context, request operations.FindAllCoupons
 
 // Update - Update an existing coupon
 // Update an existing coupon by code
+
 func (s *coupons) Update(ctx context.Context, request operations.UpdateCouponRequest) (*operations.UpdateCouponResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/coupons/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "CouponInput", "json")
 	if err != nil {

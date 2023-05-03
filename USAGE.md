@@ -2,12 +2,11 @@
 ```go
 package main
 
-import (
-    "context"
-    "log"
-    "github.com/speakeasy-sdks/lago-go"
-    "github.com/speakeasy-sdks/lago-go/pkg/models/shared"
-    "github.com/speakeasy-sdks/lago-go/pkg/models/operations"
+import(
+	"context"
+	"log"
+	"github.com/speakeasy-sdks/lago-go"
+	"github.com/speakeasy-sdks/lago-go/pkg/models/operations"
 )
 
 func main() {
@@ -17,12 +16,10 @@ func main() {
         }),
     )
 
-    req := operations.FindInvoiceRequest{
-        ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
     ctx := context.Background()
-    res, err := s.Invoices.Find(ctx, req)
+    res, err := s.Invoices.Find(ctx, operations.FindInvoiceRequest{
+        ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
+    })
     if err != nil {
         log.Fatal(err)
     }

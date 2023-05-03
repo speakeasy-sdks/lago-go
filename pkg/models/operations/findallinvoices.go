@@ -18,19 +18,23 @@ const (
 	FindAllInvoicesStatusEnumFinalized FindAllInvoicesStatusEnum = "finalized"
 )
 
+func (e FindAllInvoicesStatusEnum) ToPointer() *FindAllInvoicesStatusEnum {
+	return &e
+}
+
 func (e *FindAllInvoicesStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "draft":
 		fallthrough
 	case "finalized":
-		*e = FindAllInvoicesStatusEnum(s)
+		*e = FindAllInvoicesStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FindAllInvoicesStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for FindAllInvoicesStatusEnum: %v", v)
 	}
 }
 

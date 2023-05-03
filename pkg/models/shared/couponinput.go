@@ -20,19 +20,23 @@ const (
 	CouponInputCouponCouponTypeEnumPercentage  CouponInputCouponCouponTypeEnum = "percentage"
 )
 
+func (e CouponInputCouponCouponTypeEnum) ToPointer() *CouponInputCouponCouponTypeEnum {
+	return &e
+}
+
 func (e *CouponInputCouponCouponTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "fixed_amount":
 		fallthrough
 	case "percentage":
-		*e = CouponInputCouponCouponTypeEnum(s)
+		*e = CouponInputCouponCouponTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CouponInputCouponCouponTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for CouponInputCouponCouponTypeEnum: %v", v)
 	}
 }
 
@@ -44,19 +48,23 @@ const (
 	CouponInputCouponExpirationEnumTimeLimit    CouponInputCouponExpirationEnum = "time_limit"
 )
 
+func (e CouponInputCouponExpirationEnum) ToPointer() *CouponInputCouponExpirationEnum {
+	return &e
+}
+
 func (e *CouponInputCouponExpirationEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "no_expiration":
 		fallthrough
 	case "time_limit":
-		*e = CouponInputCouponExpirationEnum(s)
+		*e = CouponInputCouponExpirationEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CouponInputCouponExpirationEnum: %s", s)
+		return fmt.Errorf("invalid value for CouponInputCouponExpirationEnum: %v", v)
 	}
 }
 
@@ -68,19 +76,23 @@ const (
 	CouponInputCouponFrequencyEnumRecurring CouponInputCouponFrequencyEnum = "recurring"
 )
 
+func (e CouponInputCouponFrequencyEnum) ToPointer() *CouponInputCouponFrequencyEnum {
+	return &e
+}
+
 func (e *CouponInputCouponFrequencyEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "once":
 		fallthrough
 	case "recurring":
-		*e = CouponInputCouponFrequencyEnum(s)
+		*e = CouponInputCouponFrequencyEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CouponInputCouponFrequencyEnum: %s", s)
+		return fmt.Errorf("invalid value for CouponInputCouponFrequencyEnum: %v", v)
 	}
 }
 

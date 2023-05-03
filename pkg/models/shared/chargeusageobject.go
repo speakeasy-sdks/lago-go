@@ -18,12 +18,16 @@ const (
 	ChargeUsageObjectBillableMetricAggregationTypeEnumRecurringCountAgg ChargeUsageObjectBillableMetricAggregationTypeEnum = "recurring_count_agg"
 )
 
+func (e ChargeUsageObjectBillableMetricAggregationTypeEnum) ToPointer() *ChargeUsageObjectBillableMetricAggregationTypeEnum {
+	return &e
+}
+
 func (e *ChargeUsageObjectBillableMetricAggregationTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "count_agg":
 		fallthrough
 	case "sum_agg":
@@ -33,10 +37,10 @@ func (e *ChargeUsageObjectBillableMetricAggregationTypeEnum) UnmarshalJSON(data 
 	case "unique_count_agg":
 		fallthrough
 	case "recurring_count_agg":
-		*e = ChargeUsageObjectBillableMetricAggregationTypeEnum(s)
+		*e = ChargeUsageObjectBillableMetricAggregationTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ChargeUsageObjectBillableMetricAggregationTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for ChargeUsageObjectBillableMetricAggregationTypeEnum: %v", v)
 	}
 }
 
@@ -59,12 +63,16 @@ const (
 	ChargeUsageObjectChargeChargeModelEnumVolume     ChargeUsageObjectChargeChargeModelEnum = "volume"
 )
 
+func (e ChargeUsageObjectChargeChargeModelEnum) ToPointer() *ChargeUsageObjectChargeChargeModelEnum {
+	return &e
+}
+
 func (e *ChargeUsageObjectChargeChargeModelEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "standard":
 		fallthrough
 	case "graduated":
@@ -74,10 +82,10 @@ func (e *ChargeUsageObjectChargeChargeModelEnum) UnmarshalJSON(data []byte) erro
 	case "percentage":
 		fallthrough
 	case "volume":
-		*e = ChargeUsageObjectChargeChargeModelEnum(s)
+		*e = ChargeUsageObjectChargeChargeModelEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ChargeUsageObjectChargeChargeModelEnum: %s", s)
+		return fmt.Errorf("invalid value for ChargeUsageObjectChargeChargeModelEnum: %v", v)
 	}
 }
 

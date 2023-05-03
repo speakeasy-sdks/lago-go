@@ -17,21 +17,25 @@ const (
 	CreditNoteObjectCreditStatusEnumVoided    CreditNoteObjectCreditStatusEnum = "voided"
 )
 
+func (e CreditNoteObjectCreditStatusEnum) ToPointer() *CreditNoteObjectCreditStatusEnum {
+	return &e
+}
+
 func (e *CreditNoteObjectCreditStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "available":
 		fallthrough
 	case "consumed":
 		fallthrough
 	case "voided":
-		*e = CreditNoteObjectCreditStatusEnum(s)
+		*e = CreditNoteObjectCreditStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditNoteObjectCreditStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for CreditNoteObjectCreditStatusEnum: %v", v)
 	}
 }
 
@@ -47,12 +51,16 @@ const (
 	CreditNoteObjectReasonEnumOther                 CreditNoteObjectReasonEnum = "other"
 )
 
+func (e CreditNoteObjectReasonEnum) ToPointer() *CreditNoteObjectReasonEnum {
+	return &e
+}
+
 func (e *CreditNoteObjectReasonEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "duplicated_charge":
 		fallthrough
 	case "product_unsatisfactory":
@@ -64,10 +72,10 @@ func (e *CreditNoteObjectReasonEnum) UnmarshalJSON(data []byte) error {
 	case "fraudulent_charge":
 		fallthrough
 	case "other":
-		*e = CreditNoteObjectReasonEnum(s)
+		*e = CreditNoteObjectReasonEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditNoteObjectReasonEnum: %s", s)
+		return fmt.Errorf("invalid value for CreditNoteObjectReasonEnum: %v", v)
 	}
 }
 
@@ -80,21 +88,25 @@ const (
 	CreditNoteObjectRefundStatusEnumFailed    CreditNoteObjectRefundStatusEnum = "failed"
 )
 
+func (e CreditNoteObjectRefundStatusEnum) ToPointer() *CreditNoteObjectRefundStatusEnum {
+	return &e
+}
+
 func (e *CreditNoteObjectRefundStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "succeeded":
 		fallthrough
 	case "failed":
-		*e = CreditNoteObjectRefundStatusEnum(s)
+		*e = CreditNoteObjectRefundStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditNoteObjectRefundStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for CreditNoteObjectRefundStatusEnum: %v", v)
 	}
 }
 

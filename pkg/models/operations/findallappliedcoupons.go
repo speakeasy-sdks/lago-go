@@ -17,19 +17,23 @@ const (
 	FindAllAppliedCouponsStatusEnumTerminated FindAllAppliedCouponsStatusEnum = "terminated"
 )
 
+func (e FindAllAppliedCouponsStatusEnum) ToPointer() *FindAllAppliedCouponsStatusEnum {
+	return &e
+}
+
 func (e *FindAllAppliedCouponsStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "active":
 		fallthrough
 	case "terminated":
-		*e = FindAllAppliedCouponsStatusEnum(s)
+		*e = FindAllAppliedCouponsStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FindAllAppliedCouponsStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for FindAllAppliedCouponsStatusEnum: %v", v)
 	}
 }
 

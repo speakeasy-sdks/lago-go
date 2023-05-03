@@ -36,6 +36,7 @@ func newPlans(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 
 // Create - Create a new plan
 // Create a new plan
+
 func (s *plans) Create(ctx context.Context, request shared.PlanInput) (*operations.CreatePlanResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/plans"
@@ -131,9 +132,13 @@ func (s *plans) Create(ctx context.Context, request shared.PlanInput) (*operatio
 
 // Destroy - Delete a plan
 // Delete a plan
+
 func (s *plans) Destroy(ctx context.Context, request operations.DestroyPlanRequest) (*operations.DestroyPlanResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -196,9 +201,13 @@ func (s *plans) Destroy(ctx context.Context, request operations.DestroyPlanReque
 
 // Find - Fin plan by code
 // Return a single plan
+
 func (s *plans) Find(ctx context.Context, request operations.FindPlanRequest) (*operations.FindPlanResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -261,6 +270,7 @@ func (s *plans) Find(ctx context.Context, request operations.FindPlanRequest) (*
 
 // FindAll - Find plans
 // Find all plans in certain organisation
+
 func (s *plans) FindAll(ctx context.Context, request operations.FindAllPlansRequest) (*operations.FindAllPlansResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/plans"
@@ -320,9 +330,13 @@ func (s *plans) FindAll(ctx context.Context, request operations.FindAllPlansRequ
 
 // Update - Update an existing plan
 // Update an existing plan by code
+
 func (s *plans) Update(ctx context.Context, request operations.UpdatePlanRequest) (*operations.UpdatePlanResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/plans/{code}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "PlanInput", "json")
 	if err != nil {

@@ -17,21 +17,25 @@ const (
 	PlanObjectIntervalEnumYearly  PlanObjectIntervalEnum = "yearly"
 )
 
+func (e PlanObjectIntervalEnum) ToPointer() *PlanObjectIntervalEnum {
+	return &e
+}
+
 func (e *PlanObjectIntervalEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "weekly":
 		fallthrough
 	case "monthly":
 		fallthrough
 	case "yearly":
-		*e = PlanObjectIntervalEnum(s)
+		*e = PlanObjectIntervalEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PlanObjectIntervalEnum: %s", s)
+		return fmt.Errorf("invalid value for PlanObjectIntervalEnum: %v", v)
 	}
 }
 

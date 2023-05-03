@@ -16,21 +16,25 @@ const (
 	CreditNoteUpdateInputCreditNoteRefundStatusEnumFailed    CreditNoteUpdateInputCreditNoteRefundStatusEnum = "failed"
 )
 
+func (e CreditNoteUpdateInputCreditNoteRefundStatusEnum) ToPointer() *CreditNoteUpdateInputCreditNoteRefundStatusEnum {
+	return &e
+}
+
 func (e *CreditNoteUpdateInputCreditNoteRefundStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "succeeded":
 		fallthrough
 	case "failed":
-		*e = CreditNoteUpdateInputCreditNoteRefundStatusEnum(s)
+		*e = CreditNoteUpdateInputCreditNoteRefundStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditNoteUpdateInputCreditNoteRefundStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for CreditNoteUpdateInputCreditNoteRefundStatusEnum: %v", v)
 	}
 }
 

@@ -24,12 +24,16 @@ const (
 	CreditNoteInputCreditNoteReasonEnumOther                 CreditNoteInputCreditNoteReasonEnum = "other"
 )
 
+func (e CreditNoteInputCreditNoteReasonEnum) ToPointer() *CreditNoteInputCreditNoteReasonEnum {
+	return &e
+}
+
 func (e *CreditNoteInputCreditNoteReasonEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "duplicated_charge":
 		fallthrough
 	case "product_unsatisfactory":
@@ -41,10 +45,10 @@ func (e *CreditNoteInputCreditNoteReasonEnum) UnmarshalJSON(data []byte) error {
 	case "fraudulent_charge":
 		fallthrough
 	case "other":
-		*e = CreditNoteInputCreditNoteReasonEnum(s)
+		*e = CreditNoteInputCreditNoteReasonEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditNoteInputCreditNoteReasonEnum: %s", s)
+		return fmt.Errorf("invalid value for CreditNoteInputCreditNoteReasonEnum: %v", v)
 	}
 }
 

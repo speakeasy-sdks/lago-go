@@ -15,21 +15,25 @@ const (
 	CreditObjectInvoicePaymentStatusEnumFailed    CreditObjectInvoicePaymentStatusEnum = "failed"
 )
 
+func (e CreditObjectInvoicePaymentStatusEnum) ToPointer() *CreditObjectInvoicePaymentStatusEnum {
+	return &e
+}
+
 func (e *CreditObjectInvoicePaymentStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "succeeded":
 		fallthrough
 	case "failed":
-		*e = CreditObjectInvoicePaymentStatusEnum(s)
+		*e = CreditObjectInvoicePaymentStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CreditObjectInvoicePaymentStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for CreditObjectInvoicePaymentStatusEnum: %v", v)
 	}
 }
 
