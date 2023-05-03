@@ -37,8 +37,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.SubscriptionCreateInput{
+    ctx := context.Background()
+    res, err := s.Subscriptions.Create(ctx, shared.SubscriptionCreateInput{
         Subscription: shared.SubscriptionCreateInputSubscription{
             BillingTime: shared.SubscriptionCreateInputSubscriptionBillingTimeEnumAnniversary.ToPointer(),
             ExternalCustomerID: "12345",
@@ -47,9 +47,7 @@ func main() {
             PlanCode: "example_code",
             SubscriptionAt: types.MustTimeFromString("2022-08-08T00:00:00Z"),
         },
-    }
-
-    res, err := s.Subscriptions.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -83,12 +81,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DestroySubscriptionRequest{
+    ctx := context.Background()
+    res, err := s.Subscriptions.Destroy(ctx, operations.DestroySubscriptionRequest{
         ExternalID: "example_id",
-    }
-
-    res, err := s.Subscriptions.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -122,14 +118,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllSubscriptionsRequest{
+    ctx := context.Background()
+    res, err := s.Subscriptions.FindAll(ctx, operations.FindAllSubscriptionsRequest{
         ExternalCustomerID: "12345",
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.Subscriptions.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -165,8 +159,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateSubscriptionRequest{
+    ctx := context.Background()
+    res, err := s.Subscriptions.Update(ctx, operations.UpdateSubscriptionRequest{
         SubscriptionUpdateInput: shared.SubscriptionUpdateInput{
             Subscription: shared.SubscriptionUpdateInputSubscription{
                 Name: lago.String("New name"),
@@ -174,9 +168,7 @@ func main() {
             },
         },
         ExternalID: "example_id",
-    }
-
-    res, err := s.Subscriptions.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -38,8 +38,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.BillableMetricInput{
+    ctx := context.Background()
+    res, err := s.BillableMetrics.Create(ctx, shared.BillableMetricInput{
         BillableMetric: shared.BillableMetricInputBillableMetric{
             AggregationType: shared.BillableMetricInputBillableMetricAggregationTypeEnumMaxAgg.ToPointer(),
             Code: lago.String("example_code"),
@@ -55,9 +55,7 @@ func main() {
             },
             Name: lago.String("bm1"),
         },
-    }
-
-    res, err := s.BillableMetrics.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -91,12 +89,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DestroyBillableMetricRequest{
+    ctx := context.Background()
+    res, err := s.BillableMetrics.Destroy(ctx, operations.DestroyBillableMetricRequest{
         Code: "example_code",
-    }
-
-    res, err := s.BillableMetrics.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -130,12 +126,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindBillableMetricRequest{
+    ctx := context.Background()
+    res, err := s.BillableMetrics.Find(ctx, operations.FindBillableMetricRequest{
         Code: "example_code",
-    }
-
-    res, err := s.BillableMetrics.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -169,13 +163,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllBillableMetricsRequest{
+    ctx := context.Background()
+    res, err := s.BillableMetrics.FindAll(ctx, operations.FindAllBillableMetricsRequest{
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.BillableMetrics.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -209,14 +201,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllBillableMetricGroupsRequest{
+    ctx := context.Background()
+    res, err := s.BillableMetrics.FindAllGroups(ctx, operations.FindAllBillableMetricGroupsRequest{
         Code: "example_code",
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.BillableMetrics.FindAllGroups(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -251,8 +241,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateBillableMetricRequest{
+    ctx := context.Background()
+    res, err := s.BillableMetrics.Update(ctx, operations.UpdateBillableMetricRequest{
         BillableMetricInput: shared.BillableMetricInput{
             BillableMetric: shared.BillableMetricInputBillableMetric{
                 AggregationType: shared.BillableMetricInputBillableMetricAggregationTypeEnumUniqueCountAgg.ToPointer(),
@@ -272,9 +262,7 @@ func main() {
             },
         },
         Code: "example_code",
-    }
-
-    res, err := s.BillableMetrics.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

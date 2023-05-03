@@ -39,12 +39,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Download(ctx, operations.DownloadInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Invoices.Download(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -78,12 +76,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FinalizeInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Finalize(ctx, operations.FinalizeInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Invoices.Finalize(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -117,12 +113,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Find(ctx, operations.FindInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Invoices.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -157,17 +151,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllInvoicesRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.FindAll(ctx, operations.FindAllInvoicesRequest{
         ExternalCustomerID: lago.String("12345"),
         IssuingDateFrom: types.MustDateFromString("2022-07-08"),
         IssuingDateTo: types.MustDateFromString("2022-08-09"),
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
         Status: operations.FindAllInvoicesStatusEnumFinalized.ToPointer(),
-    }
-
-    res, err := s.Invoices.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -201,12 +193,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RetryPaymentRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Retry(ctx, operations.RetryPaymentRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Invoices.Retry(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -241,8 +231,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Update(ctx, operations.UpdateInvoiceRequest{
         InvoiceInput: shared.InvoiceInput{
             Invoice: shared.InvoiceInputInvoice{
                 Metadata: []shared.InvoiceInputInvoiceMetadata{
@@ -271,9 +261,7 @@ func main() {
             },
         },
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Invoices.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -307,12 +295,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.RefreshInvoiceRequest{
+    ctx := context.Background()
+    res, err := s.Invoices.Void(ctx, operations.RefreshInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Invoices.Void(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

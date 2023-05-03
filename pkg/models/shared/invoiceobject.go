@@ -21,20 +21,20 @@ func (e InvoiceObjectInvoiceTypeEnum) ToPointer() *InvoiceObjectInvoiceTypeEnum 
 }
 
 func (e *InvoiceObjectInvoiceTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "subscription":
 		fallthrough
 	case "add_on":
 		fallthrough
 	case "credit":
-		*e = InvoiceObjectInvoiceTypeEnum(s)
+		*e = InvoiceObjectInvoiceTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InvoiceObjectInvoiceTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for InvoiceObjectInvoiceTypeEnum: %v", v)
 	}
 }
 
@@ -51,20 +51,20 @@ func (e InvoiceObjectPaymentStatusEnum) ToPointer() *InvoiceObjectPaymentStatusE
 }
 
 func (e *InvoiceObjectPaymentStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "succeeded":
 		fallthrough
 	case "failed":
-		*e = InvoiceObjectPaymentStatusEnum(s)
+		*e = InvoiceObjectPaymentStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InvoiceObjectPaymentStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for InvoiceObjectPaymentStatusEnum: %v", v)
 	}
 }
 
@@ -80,18 +80,18 @@ func (e InvoiceObjectStatusEnum) ToPointer() *InvoiceObjectStatusEnum {
 }
 
 func (e *InvoiceObjectStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "draft":
 		fallthrough
 	case "finalized":
-		*e = InvoiceObjectStatusEnum(s)
+		*e = InvoiceObjectStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for InvoiceObjectStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for InvoiceObjectStatusEnum: %v", v)
 	}
 }
 

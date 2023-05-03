@@ -36,6 +36,7 @@ func newAddOns(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // Apply - Apply an add-on to a customer
 // Apply an add-on to a customer
+
 func (s *addOns) Apply(ctx context.Context, request shared.AppliedAddOnInput) (*operations.ApplyAddOnResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/applied_add_ons"
@@ -131,6 +132,7 @@ func (s *addOns) Apply(ctx context.Context, request shared.AppliedAddOnInput) (*
 
 // Create - Create a new add-on
 // Create a new add-on
+
 func (s *addOns) Create(ctx context.Context, request shared.AddOnInput) (*operations.CreateAddOnResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/add_ons"
@@ -216,6 +218,7 @@ func (s *addOns) Create(ctx context.Context, request shared.AddOnInput) (*operat
 
 // Destroy - Delete an add-on
 // Delete an add-on
+
 func (s *addOns) Destroy(ctx context.Context, request operations.DestroyAddOnRequest) (*operations.DestroyAddOnResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
@@ -284,6 +287,7 @@ func (s *addOns) Destroy(ctx context.Context, request operations.DestroyAddOnReq
 
 // Find - Find add-on by code
 // Return a single add-on
+
 func (s *addOns) Find(ctx context.Context, request operations.FindAddOnRequest) (*operations.FindAddOnResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)
@@ -352,6 +356,7 @@ func (s *addOns) Find(ctx context.Context, request operations.FindAddOnRequest) 
 
 // FindAll - Find add-ons
 // Find all add-ons in certain organisation
+
 func (s *addOns) FindAll(ctx context.Context, request operations.FindAllAddOnsRequest) (*operations.FindAllAddOnsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/add_ons"
@@ -411,6 +416,7 @@ func (s *addOns) FindAll(ctx context.Context, request operations.FindAllAddOnsRe
 
 // Update - Update an existing add-on
 // Update an existing add-on by code
+
 func (s *addOns) Update(ctx context.Context, request operations.UpdateAddOnRequest) (*operations.UpdateAddOnResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/add_ons/{code}", request, nil)

@@ -21,18 +21,18 @@ func (e WalletTransactionObjectStatusEnum) ToPointer() *WalletTransactionObjectS
 }
 
 func (e *WalletTransactionObjectStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "settled":
-		*e = WalletTransactionObjectStatusEnum(s)
+		*e = WalletTransactionObjectStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for WalletTransactionObjectStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for WalletTransactionObjectStatusEnum: %v", v)
 	}
 }
 
@@ -49,18 +49,18 @@ func (e WalletTransactionObjectTransactionTypeEnum) ToPointer() *WalletTransacti
 }
 
 func (e *WalletTransactionObjectTransactionTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "inbound":
 		fallthrough
 	case "outbound":
-		*e = WalletTransactionObjectTransactionTypeEnum(s)
+		*e = WalletTransactionObjectTransactionTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for WalletTransactionObjectTransactionTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for WalletTransactionObjectTransactionTypeEnum: %v", v)
 	}
 }
 

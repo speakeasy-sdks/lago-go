@@ -23,11 +23,11 @@ func (e BillableMetricInputBillableMetricAggregationTypeEnum) ToPointer() *Billa
 }
 
 func (e *BillableMetricInputBillableMetricAggregationTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "count_agg":
 		fallthrough
 	case "sum_agg":
@@ -37,10 +37,10 @@ func (e *BillableMetricInputBillableMetricAggregationTypeEnum) UnmarshalJSON(dat
 	case "unique_count_agg":
 		fallthrough
 	case "recurring_count_agg":
-		*e = BillableMetricInputBillableMetricAggregationTypeEnum(s)
+		*e = BillableMetricInputBillableMetricAggregationTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for BillableMetricInputBillableMetricAggregationTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for BillableMetricInputBillableMetricAggregationTypeEnum: %v", v)
 	}
 }
 

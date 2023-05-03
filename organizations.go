@@ -36,6 +36,7 @@ func newOrganizations(defaultClient, securityClient HTTPClient, serverURL, langu
 
 // Update - Update an existing Organization
 // Update an existing organization
+
 func (s *organizations) Update(ctx context.Context, request shared.OrganizationInput) (*operations.UpdateOrganizationResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/organizations"

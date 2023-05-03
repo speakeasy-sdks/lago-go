@@ -39,15 +39,13 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllAppliedCouponsRequest{
+    ctx := context.Background()
+    res, err := s.Coupons.AppliedCoupons(ctx, operations.FindAllAppliedCouponsRequest{
         ExternalCustomerID: lago.String("12345"),
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
         Status: operations.FindAllAppliedCouponsStatusEnumTerminated.ToPointer(),
-    }
-
-    res, err := s.Coupons.AppliedCoupons(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -81,8 +79,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.AppliedCouponInput{
+    ctx := context.Background()
+    res, err := s.Coupons.Apply(ctx, shared.AppliedCouponInput{
         AppliedCoupon: shared.AppliedCouponInputAppliedCoupon{
             AmountCents: lago.Int64(1200),
             AmountCurrency: lago.String("EUR"),
@@ -92,9 +90,7 @@ func main() {
             FrequencyDuration: lago.Int64(3),
             PercentageRate: lago.Float64(25),
         },
-    }
-
-    res, err := s.Coupons.Apply(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -129,8 +125,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CouponInput{
+    ctx := context.Background()
+    res, err := s.Coupons.Create(ctx, shared.CouponInput{
         Coupon: shared.CouponInputCoupon{
             AmountCents: lago.Int64(1200),
             AmountCurrency: lago.String("EUR"),
@@ -151,9 +147,7 @@ func main() {
             PercentageRate: lago.Float64(25),
             Reusable: lago.Bool(true),
         },
-    }
-
-    res, err := s.Coupons.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -187,12 +181,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DestroyCouponRequest{
+    ctx := context.Background()
+    res, err := s.Coupons.Destroy(ctx, operations.DestroyCouponRequest{
         Code: "example_code",
-    }
-
-    res, err := s.Coupons.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -226,12 +218,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindCouponRequest{
+    ctx := context.Background()
+    res, err := s.Coupons.Find(ctx, operations.FindCouponRequest{
         Code: "example_code",
-    }
-
-    res, err := s.Coupons.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -265,13 +255,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllCouponsRequest{
+    ctx := context.Background()
+    res, err := s.Coupons.FindAll(ctx, operations.FindAllCouponsRequest{
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.Coupons.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -307,8 +295,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateCouponRequest{
+    ctx := context.Background()
+    res, err := s.Coupons.Update(ctx, operations.UpdateCouponRequest{
         CouponInput: shared.CouponInput{
             Coupon: shared.CouponInputCoupon{
                 AmountCents: lago.Int64(1200),
@@ -332,9 +320,7 @@ func main() {
             },
         },
         Code: "example_code",
-    }
-
-    res, err := s.Coupons.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

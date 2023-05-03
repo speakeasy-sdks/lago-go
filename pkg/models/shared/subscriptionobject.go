@@ -21,18 +21,18 @@ func (e SubscriptionObjectBillingTimeEnum) ToPointer() *SubscriptionObjectBillin
 }
 
 func (e *SubscriptionObjectBillingTimeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "calendar":
 		fallthrough
 	case "anniversary":
-		*e = SubscriptionObjectBillingTimeEnum(s)
+		*e = SubscriptionObjectBillingTimeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SubscriptionObjectBillingTimeEnum: %s", s)
+		return fmt.Errorf("invalid value for SubscriptionObjectBillingTimeEnum: %v", v)
 	}
 }
 
@@ -51,11 +51,11 @@ func (e SubscriptionObjectStatusEnum) ToPointer() *SubscriptionObjectStatusEnum 
 }
 
 func (e *SubscriptionObjectStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "active":
 		fallthrough
 	case "pending":
@@ -63,10 +63,10 @@ func (e *SubscriptionObjectStatusEnum) UnmarshalJSON(data []byte) error {
 	case "terminated":
 		fallthrough
 	case "canceled":
-		*e = SubscriptionObjectStatusEnum(s)
+		*e = SubscriptionObjectStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SubscriptionObjectStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for SubscriptionObjectStatusEnum: %v", v)
 	}
 }
 

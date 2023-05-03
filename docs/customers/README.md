@@ -39,8 +39,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CustomerInput{
+    ctx := context.Background()
+    res, err := s.Customers.Create(ctx, shared.CustomerInput{
         Customer: shared.CustomerInputCustomer{
             AddressLine1: lago.String("address1"),
             AddressLine2: lago.String("address2"),
@@ -83,9 +83,7 @@ func main() {
             URL: lago.String("https://example.com"),
             Zipcode: lago.String("10000"),
         },
-    }
-
-    res, err := s.Customers.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -119,13 +117,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindCustomerCurrentUsageRequest{
+    ctx := context.Background()
+    res, err := s.Customers.CurrentUsage(ctx, operations.FindCustomerCurrentUsageRequest{
         CustomerExternalID: "12345",
         ExternalSubscriptionID: "54321",
-    }
-
-    res, err := s.Customers.CurrentUsage(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -159,13 +155,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteAppliedCouponRequest{
+    ctx := context.Background()
+    res, err := s.Customers.DeleteAppliedCoupon(ctx, operations.DeleteAppliedCouponRequest{
         AppliedCouponID: "54321",
         CustomerExternalID: "12345",
-    }
-
-    res, err := s.Customers.DeleteAppliedCoupon(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -199,12 +193,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DeleteCustomerRequest{
+    ctx := context.Background()
+    res, err := s.Customers.Destroy(ctx, operations.DeleteCustomerRequest{
         ExternalID: "12345",
-    }
-
-    res, err := s.Customers.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -238,12 +230,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindCustomerRequest{
+    ctx := context.Background()
+    res, err := s.Customers.Find(ctx, operations.FindCustomerRequest{
         ExternalID: "12345",
-    }
-
-    res, err := s.Customers.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -277,13 +267,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllCustomersRequest{
+    ctx := context.Background()
+    res, err := s.Customers.FindAll(ctx, operations.FindAllCustomersRequest{
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.Customers.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -317,12 +305,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.GetCustomerPortalURLRequest{
+    ctx := context.Background()
+    res, err := s.Customers.PortalURL(ctx, operations.GetCustomerPortalURLRequest{
         CustomerExternalID: "12345",
-    }
-
-    res, err := s.Customers.PortalURL(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

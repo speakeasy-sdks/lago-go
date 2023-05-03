@@ -21,18 +21,18 @@ func (e SubscriptionCreateInputSubscriptionBillingTimeEnum) ToPointer() *Subscri
 }
 
 func (e *SubscriptionCreateInputSubscriptionBillingTimeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "calendar":
 		fallthrough
 	case "anniversary":
-		*e = SubscriptionCreateInputSubscriptionBillingTimeEnum(s)
+		*e = SubscriptionCreateInputSubscriptionBillingTimeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SubscriptionCreateInputSubscriptionBillingTimeEnum: %s", s)
+		return fmt.Errorf("invalid value for SubscriptionCreateInputSubscriptionBillingTimeEnum: %v", v)
 	}
 }
 

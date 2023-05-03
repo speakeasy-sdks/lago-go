@@ -20,18 +20,18 @@ func (e AppliedCouponInputAppliedCouponFrequencyEnum) ToPointer() *AppliedCoupon
 }
 
 func (e *AppliedCouponInputAppliedCouponFrequencyEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "once":
 		fallthrough
 	case "recurring":
-		*e = AppliedCouponInputAppliedCouponFrequencyEnum(s)
+		*e = AppliedCouponInputAppliedCouponFrequencyEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AppliedCouponInputAppliedCouponFrequencyEnum: %s", s)
+		return fmt.Errorf("invalid value for AppliedCouponInputAppliedCouponFrequencyEnum: %v", v)
 	}
 }
 

@@ -36,8 +36,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.EventEstimateFeesInput{
+    ctx := context.Background()
+    res, err := s.Events.EstimateFees(ctx, shared.EventEstimateFeesInput{
         Event: shared.EventEstimateFeesInputEvent{
             Code: "code",
             ExternalCustomerID: lago.String("654321"),
@@ -47,9 +47,7 @@ func main() {
                 "recusandae": "temporibus",
             },
         },
-    }
-
-    res, err := s.Events.EstimateFees(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -83,8 +81,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.BatchEventInput{
+    ctx := context.Background()
+    res, err := s.Events.BatchCreate(ctx, shared.BatchEventInput{
         Event: shared.BatchEventInputEvent{
             Code: "code",
             ExternalCustomerID: lago.String("654321"),
@@ -97,9 +95,7 @@ func main() {
             Timestamp: lago.Int64(1669823754),
             TransactionID: "123456",
         },
-    }
-
-    res, err := s.Events.BatchCreate(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -133,8 +129,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.EventInput{
+    ctx := context.Background()
+    res, err := s.Events.Create(ctx, shared.EventInput{
         Event: shared.EventInputEvent{
             Code: "code",
             ExternalCustomerID: lago.String("654321"),
@@ -146,9 +142,7 @@ func main() {
             Timestamp: lago.Int64(1669823754),
             TransactionID: "123456",
         },
-    }
-
-    res, err := s.Events.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -182,12 +176,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindEventRequest{
+    ctx := context.Background()
+    res, err := s.Events.Find(ctx, operations.FindEventRequest{
         ID: "12345",
-    }
-
-    res, err := s.Events.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

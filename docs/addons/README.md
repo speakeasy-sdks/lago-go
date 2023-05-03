@@ -38,17 +38,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.AppliedAddOnInput{
+    ctx := context.Background()
+    res, err := s.AddOns.Apply(ctx, shared.AppliedAddOnInput{
         AppliedAddOn: shared.AppliedAddOnInputAppliedAddOn{
             AddOnCode: "code",
             AmountCents: lago.Int64(1200),
             AmountCurrency: lago.String("EUR"),
             ExternalCustomerID: "1234567",
         },
-    }
-
-    res, err := s.AddOns.Apply(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -82,8 +80,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.AddOnInput{
+    ctx := context.Background()
+    res, err := s.AddOns.Create(ctx, shared.AddOnInput{
         AddOn: shared.AddOnInputAddOn{
             AmountCents: lago.Int64(1200),
             AmountCurrency: lago.String("EUR"),
@@ -91,9 +89,7 @@ func main() {
             Description: lago.String("description"),
             Name: lago.String("example name"),
         },
-    }
-
-    res, err := s.AddOns.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -127,12 +123,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DestroyAddOnRequest{
+    ctx := context.Background()
+    res, err := s.AddOns.Destroy(ctx, operations.DestroyAddOnRequest{
         Code: "example_code",
-    }
-
-    res, err := s.AddOns.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -166,12 +160,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAddOnRequest{
+    ctx := context.Background()
+    res, err := s.AddOns.Find(ctx, operations.FindAddOnRequest{
         Code: "example_code",
-    }
-
-    res, err := s.AddOns.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -205,13 +197,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllAddOnsRequest{
+    ctx := context.Background()
+    res, err := s.AddOns.FindAll(ctx, operations.FindAllAddOnsRequest{
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.AddOns.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -246,8 +236,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateAddOnRequest{
+    ctx := context.Background()
+    res, err := s.AddOns.Update(ctx, operations.UpdateAddOnRequest{
         AddOnInput: shared.AddOnInput{
             AddOn: shared.AddOnInputAddOn{
                 AmountCents: lago.Int64(1200),
@@ -258,9 +248,7 @@ func main() {
             },
         },
         Code: "example_code",
-    }
-
-    res, err := s.AddOns.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

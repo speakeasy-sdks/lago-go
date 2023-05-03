@@ -40,8 +40,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.WalletInput{
+    ctx := context.Background()
+    res, err := s.Wallets.Create(ctx, shared.WalletInput{
         Wallet: &shared.WalletInputWallet{
             Currency: "EUR",
             ExpirationAt: types.MustTimeFromString("2022-09-14T23:59:59Z"),
@@ -51,9 +51,7 @@ func main() {
             PaidCredits: lago.Float64(500),
             RateAmount: 2,
         },
-    }
-
-    res, err := s.Wallets.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -87,16 +85,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.WalletTransactionInput{
+    ctx := context.Background()
+    res, err := s.Wallets.CreateTransaction(ctx, shared.WalletTransactionInput{
         WalletTransaction: shared.WalletTransactionInputWalletTransaction{
             GrantedCredits: lago.Float64(10),
             PaidCredits: lago.Float64(100),
             WalletID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
         },
-    }
-
-    res, err := s.Wallets.CreateTransaction(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -130,12 +126,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DestroyWalletRequest{
+    ctx := context.Background()
+    res, err := s.Wallets.Destroy(ctx, operations.DestroyWalletRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Wallets.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -169,12 +163,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindWalletRequest{
+    ctx := context.Background()
+    res, err := s.Wallets.Find(ctx, operations.FindWalletRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Wallets.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -208,14 +200,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllWalletsRequest{
+    ctx := context.Background()
+    res, err := s.Wallets.FindAll(ctx, operations.FindAllWalletsRequest{
         ExternalCustomerID: "12345",
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.Wallets.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -249,16 +239,14 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllWalletTransactionsRequest{
+    ctx := context.Background()
+    res, err := s.Wallets.FindAllTransactions(ctx, operations.FindAllWalletTransactionsRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
         Status: lago.String("pending"),
         TransactionType: lago.String("inbound"),
-    }
-
-    res, err := s.Wallets.FindAllTransactions(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -294,8 +282,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateWalletRequest{
+    ctx := context.Background()
+    res, err := s.Wallets.Update(ctx, operations.UpdateWalletRequest{
         WalletUpdateInput: shared.WalletUpdateInput{
             Wallet: shared.WalletUpdateInputWallet{
                 ExpirationAt: types.MustTimeFromString("2022-09-14T23:59:59Z"),
@@ -303,9 +291,7 @@ func main() {
             },
         },
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Wallets.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

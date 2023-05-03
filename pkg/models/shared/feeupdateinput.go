@@ -22,11 +22,11 @@ func (e FeeUpdateInputInvoicePaymentStatusEnum) ToPointer() *FeeUpdateInputInvoi
 }
 
 func (e *FeeUpdateInputInvoicePaymentStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "succeeded":
@@ -34,10 +34,10 @@ func (e *FeeUpdateInputInvoicePaymentStatusEnum) UnmarshalJSON(data []byte) erro
 	case "failed":
 		fallthrough
 	case "refunded":
-		*e = FeeUpdateInputInvoicePaymentStatusEnum(s)
+		*e = FeeUpdateInputInvoicePaymentStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FeeUpdateInputInvoicePaymentStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for FeeUpdateInputInvoicePaymentStatusEnum: %v", v)
 	}
 }
 

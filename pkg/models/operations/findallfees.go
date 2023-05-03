@@ -26,11 +26,11 @@ func (e FindAllFeesFeeTypeEnum) ToPointer() *FindAllFeesFeeTypeEnum {
 }
 
 func (e *FindAllFeesFeeTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "charge":
 		fallthrough
 	case "add_on":
@@ -40,10 +40,10 @@ func (e *FindAllFeesFeeTypeEnum) UnmarshalJSON(data []byte) error {
 	case "credit":
 		fallthrough
 	case "instant_charge":
-		*e = FindAllFeesFeeTypeEnum(s)
+		*e = FindAllFeesFeeTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FindAllFeesFeeTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for FindAllFeesFeeTypeEnum: %v", v)
 	}
 }
 
@@ -62,11 +62,11 @@ func (e FindAllFeesPaymentStatusEnum) ToPointer() *FindAllFeesPaymentStatusEnum 
 }
 
 func (e *FindAllFeesPaymentStatusEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "pending":
 		fallthrough
 	case "succeeded":
@@ -74,10 +74,10 @@ func (e *FindAllFeesPaymentStatusEnum) UnmarshalJSON(data []byte) error {
 	case "failed":
 		fallthrough
 	case "refunded":
-		*e = FindAllFeesPaymentStatusEnum(s)
+		*e = FindAllFeesPaymentStatusEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for FindAllFeesPaymentStatusEnum: %s", s)
+		return fmt.Errorf("invalid value for FindAllFeesPaymentStatusEnum: %v", v)
 	}
 }
 

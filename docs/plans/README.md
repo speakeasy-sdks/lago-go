@@ -37,8 +37,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.PlanInput{
+    ctx := context.Background()
+    res, err := s.Plans.Create(ctx, shared.PlanInput{
         Plan: shared.PlanInputPlan{
             AmountCents: lago.Int64(1200),
             AmountCurrency: lago.String("EUR"),
@@ -146,9 +146,7 @@ func main() {
             PayInAdvance: lago.Bool(true),
             TrialPeriod: lago.Float64(2),
         },
-    }
-
-    res, err := s.Plans.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -182,12 +180,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DestroyPlanRequest{
+    ctx := context.Background()
+    res, err := s.Plans.Destroy(ctx, operations.DestroyPlanRequest{
         Code: "example_code",
-    }
-
-    res, err := s.Plans.Destroy(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -221,12 +217,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindPlanRequest{
+    ctx := context.Background()
+    res, err := s.Plans.Find(ctx, operations.FindPlanRequest{
         Code: "example_code",
-    }
-
-    res, err := s.Plans.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -260,13 +254,11 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllPlansRequest{
+    ctx := context.Background()
+    res, err := s.Plans.FindAll(ctx, operations.FindAllPlansRequest{
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.Plans.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -301,8 +293,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdatePlanRequest{
+    ctx := context.Background()
+    res, err := s.Plans.Update(ctx, operations.UpdatePlanRequest{
         PlanInput: shared.PlanInput{
             Plan: shared.PlanInputPlan{
                 AmountCents: lago.Int64(1200),
@@ -382,9 +374,7 @@ func main() {
             },
         },
         Code: "example_code",
-    }
-
-    res, err := s.Plans.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

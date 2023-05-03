@@ -36,6 +36,7 @@ func newEvents(defaultClient, securityClient HTTPClient, serverURL, language, sd
 
 // EstimateFees - Estimate fees for an instant charge
 // Estimate the fees that would be created after reception of an event for a billable metric attached to one or multiple instant charges
+
 func (s *events) EstimateFees(ctx context.Context, request shared.EventEstimateFeesInput) (*operations.EventEstimateFeesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/events/estimate_fees"
@@ -131,6 +132,7 @@ func (s *events) EstimateFees(ctx context.Context, request shared.EventEstimateF
 
 // BatchCreate - Create batch events
 // Create batch events
+
 func (s *events) BatchCreate(ctx context.Context, request shared.BatchEventInput) (*operations.CreateBatchEventsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/events/batch"
@@ -207,6 +209,7 @@ func (s *events) BatchCreate(ctx context.Context, request shared.BatchEventInput
 
 // Create - Create a new event
 // Create a new event
+
 func (s *events) Create(ctx context.Context, request shared.EventInput) (*operations.CreateEventResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/events"
@@ -283,6 +286,7 @@ func (s *events) Create(ctx context.Context, request shared.EventInput) (*operat
 
 // Find - Find event by transaction ID
 // Return a single event
+
 func (s *events) Find(ctx context.Context, request operations.FindEventRequest) (*operations.FindEventResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/events/{id}", request, nil)

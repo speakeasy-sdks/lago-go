@@ -35,6 +35,7 @@ func newCreditNotes(defaultClient, securityClient HTTPClient, serverURL, languag
 
 // Create - Create a new Credit note
 // Create a new credit note
+
 func (s *creditNotes) Create(ctx context.Context, request shared.CreditNoteInput) (*operations.CreateCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/credit_notes"
@@ -120,6 +121,7 @@ func (s *creditNotes) Create(ctx context.Context, request shared.CreditNoteInput
 
 // Download - Download an existing credit note
 // Download an existing credit note
+
 func (s *creditNotes) Download(ctx context.Context, request operations.DownloadCreditNoteRequest) (*operations.DownloadCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}/download", request, nil)
@@ -188,6 +190,7 @@ func (s *creditNotes) Download(ctx context.Context, request operations.DownloadC
 
 // Find - Find credit note
 // Return a single credit note
+
 func (s *creditNotes) Find(ctx context.Context, request operations.FindCreditNoteRequest) (*operations.FindCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}", request, nil)
@@ -256,6 +259,7 @@ func (s *creditNotes) Find(ctx context.Context, request operations.FindCreditNot
 
 // FindAll - Find Credit notes
 // Find all credit notes in certain organisation
+
 func (s *creditNotes) FindAll(ctx context.Context, request operations.FindAllCreditNotesRequest) (*operations.FindAllCreditNotesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/credit_notes"
@@ -315,6 +319,7 @@ func (s *creditNotes) FindAll(ctx context.Context, request operations.FindAllCre
 
 // Update - Update an existing credit note
 // Update an existing credit note
+
 func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCreditNoteRequest) (*operations.UpdateCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}", request, nil)
@@ -413,6 +418,7 @@ func (s *creditNotes) Update(ctx context.Context, request operations.UpdateCredi
 
 // Void - Void existing credit note
 // Void an existing credit note
+
 func (s *creditNotes) Void(ctx context.Context, request operations.VoidCreditNoteRequest) (*operations.VoidCreditNoteResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/credit_notes/{id}/void", request, nil)

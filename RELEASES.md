@@ -31,3 +31,11 @@ Based on:
 - Speakeasy CLI 1.23.1 (2.21.1) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v1.1.0] https://github.com/speakeasy-sdks/lago-go/releases/tag/v1.1.0 - .
+
+## 2023-05-03 01:12:14
+### Changes
+Based on:
+- OpenAPI Doc 0.26.0-beta https://prod.speakeasyapi.dev/v1/apis/Lago/version/0.26.0-beta/schema/download
+- Speakeasy CLI 1.27.0 (2.24.0) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v1.2.0] https://github.com/speakeasy-sdks/lago-go/releases/tag/v1.2.0 - .

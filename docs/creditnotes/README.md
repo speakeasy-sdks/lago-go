@@ -36,8 +36,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.CreditNoteInput{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Create(ctx, shared.CreditNoteInput{
         CreditNote: shared.CreditNoteInputCreditNote{
             CreditAmountCents: 20,
             Description: lago.String("description"),
@@ -63,9 +63,7 @@ func main() {
             Reason: shared.CreditNoteInputCreditNoteReasonEnumDuplicatedCharge,
             RefundAmountCents: 20,
         },
-    }
-
-    res, err := s.CreditNotes.Create(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -99,12 +97,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.DownloadCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Download(ctx, operations.DownloadCreditNoteRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.CreditNotes.Download(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -138,12 +134,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Find(ctx, operations.FindCreditNoteRequest{
         ID: "12345",
-    }
-
-    res, err := s.CreditNotes.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -177,14 +171,12 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllCreditNotesRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.FindAll(ctx, operations.FindAllCreditNotesRequest{
         ExternalCustomerID: lago.String("12345"),
         Page: lago.Int64(2),
         PerPage: lago.Int64(20),
-    }
-
-    res, err := s.CreditNotes.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -219,17 +211,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Update(ctx, operations.UpdateCreditNoteRequest{
         CreditNoteUpdateInput: shared.CreditNoteUpdateInput{
             CreditNote: shared.CreditNoteUpdateInputCreditNote{
                 RefundStatus: shared.CreditNoteUpdateInputCreditNoteRefundStatusEnumFailed,
             },
         },
         ID: "12345",
-    }
-
-    res, err := s.CreditNotes.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -263,12 +253,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.VoidCreditNoteRequest{
+    ctx := context.Background()
+    res, err := s.CreditNotes.Void(ctx, operations.VoidCreditNoteRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.CreditNotes.Void(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

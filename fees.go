@@ -36,6 +36,7 @@ func newFees(defaultClient, securityClient HTTPClient, serverURL, language, sdkV
 
 // Find - Find fee by ID
 // Return a single fee
+
 func (s *fees) Find(ctx context.Context, request operations.FindFeeRequest) (*operations.FindFeeResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/fees/{id}", request, nil)
@@ -104,6 +105,7 @@ func (s *fees) Find(ctx context.Context, request operations.FindFeeRequest) (*op
 
 // FindAll - Find all fees
 // Find all fees of an organization and filter them
+
 func (s *fees) FindAll(ctx context.Context, request operations.FindAllFeesRequest) (*operations.FindAllFeesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/fees"
@@ -173,6 +175,7 @@ func (s *fees) FindAll(ctx context.Context, request operations.FindAllFeesReques
 
 // Update - Update an existing fee
 // Update an existing fee
+
 func (s *fees) Update(ctx context.Context, request operations.UpdateFeeRequest) (*operations.UpdateFeeResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/fees/{id}", request, nil)

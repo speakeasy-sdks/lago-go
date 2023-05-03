@@ -23,11 +23,11 @@ func (e PlanInputPlanChargesChargeModelEnum) ToPointer() *PlanInputPlanChargesCh
 }
 
 func (e *PlanInputPlanChargesChargeModelEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "standard":
 		fallthrough
 	case "graduated":
@@ -37,10 +37,10 @@ func (e *PlanInputPlanChargesChargeModelEnum) UnmarshalJSON(data []byte) error {
 	case "percentage":
 		fallthrough
 	case "volume":
-		*e = PlanInputPlanChargesChargeModelEnum(s)
+		*e = PlanInputPlanChargesChargeModelEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PlanInputPlanChargesChargeModelEnum: %s", s)
+		return fmt.Errorf("invalid value for PlanInputPlanChargesChargeModelEnum: %v", v)
 	}
 }
 
@@ -73,20 +73,20 @@ func (e PlanInputPlanIntervalEnum) ToPointer() *PlanInputPlanIntervalEnum {
 }
 
 func (e *PlanInputPlanIntervalEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "weekly":
 		fallthrough
 	case "monthly":
 		fallthrough
 	case "yearly":
-		*e = PlanInputPlanIntervalEnum(s)
+		*e = PlanInputPlanIntervalEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PlanInputPlanIntervalEnum: %s", s)
+		return fmt.Errorf("invalid value for PlanInputPlanIntervalEnum: %v", v)
 	}
 }
 

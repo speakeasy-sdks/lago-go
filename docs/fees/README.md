@@ -35,12 +35,10 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindFeeRequest{
+    ctx := context.Background()
+    res, err := s.Fees.Find(ctx, operations.FindFeeRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Fees.Find(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -75,8 +73,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.FindAllFeesRequest{
+    ctx := context.Background()
+    res, err := s.Fees.FindAll(ctx, operations.FindAllFeesRequest{
         BillableMetricCode: lago.String("bm_code"),
         CreatedAtFrom: types.MustTimeFromString("2023-03-28T12:21:51Z"),
         CreatedAtTo: types.MustTimeFromString("2023-03-28T12:21:51Z"),
@@ -93,9 +91,7 @@ func main() {
         RefundedAtTo: types.MustTimeFromString("2023-03-28T12:21:51Z"),
         SucceededAtFrom: types.MustTimeFromString("2023-03-28T12:21:51Z"),
         SucceededAtTo: types.MustTimeFromString("2023-03-28T12:21:51Z"),
-    }
-
-    res, err := s.Fees.FindAll(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -130,17 +126,15 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := operations.UpdateFeeRequest{
+    ctx := context.Background()
+    res, err := s.Fees.Update(ctx, operations.UpdateFeeRequest{
         FeeUpdateInput: &shared.FeeUpdateInput{
             Invoice: shared.FeeUpdateInputInvoice{
                 PaymentStatus: shared.FeeUpdateInputInvoicePaymentStatusEnumRefunded,
             },
         },
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
-    }
-
-    res, err := s.Fees.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }

@@ -21,18 +21,18 @@ func (e CouponObjectCouponTypeEnum) ToPointer() *CouponObjectCouponTypeEnum {
 }
 
 func (e *CouponObjectCouponTypeEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "fixed_amount":
 		fallthrough
 	case "percentage":
-		*e = CouponObjectCouponTypeEnum(s)
+		*e = CouponObjectCouponTypeEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CouponObjectCouponTypeEnum: %s", s)
+		return fmt.Errorf("invalid value for CouponObjectCouponTypeEnum: %v", v)
 	}
 }
 
@@ -49,18 +49,18 @@ func (e CouponObjectExpirationEnum) ToPointer() *CouponObjectExpirationEnum {
 }
 
 func (e *CouponObjectExpirationEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "no_expiration":
 		fallthrough
 	case "time_limit":
-		*e = CouponObjectExpirationEnum(s)
+		*e = CouponObjectExpirationEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CouponObjectExpirationEnum: %s", s)
+		return fmt.Errorf("invalid value for CouponObjectExpirationEnum: %v", v)
 	}
 }
 
@@ -77,18 +77,18 @@ func (e CouponObjectFrequencyEnum) ToPointer() *CouponObjectFrequencyEnum {
 }
 
 func (e *CouponObjectFrequencyEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "once":
 		fallthrough
 	case "recurring":
-		*e = CouponObjectFrequencyEnum(s)
+		*e = CouponObjectFrequencyEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for CouponObjectFrequencyEnum: %s", s)
+		return fmt.Errorf("invalid value for CouponObjectFrequencyEnum: %v", v)
 	}
 }
 

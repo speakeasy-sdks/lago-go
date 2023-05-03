@@ -19,18 +19,18 @@ func (e OrganizationInputOrganizationEmailSettingsEnum) ToPointer() *Organizatio
 }
 
 func (e *OrganizationInputOrganizationEmailSettingsEnum) UnmarshalJSON(data []byte) error {
-	var s string
-	if err := json.Unmarshal(data, &s); err != nil {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	switch s {
+	switch v {
 	case "invoice.finalized":
 		fallthrough
 	case "credit_note.created":
-		*e = OrganizationInputOrganizationEmailSettingsEnum(s)
+		*e = OrganizationInputOrganizationEmailSettingsEnum(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for OrganizationInputOrganizationEmailSettingsEnum: %s", s)
+		return fmt.Errorf("invalid value for OrganizationInputOrganizationEmailSettingsEnum: %v", v)
 	}
 }
 

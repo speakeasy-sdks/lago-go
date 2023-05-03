@@ -33,8 +33,8 @@ func main() {
         }),
     )
 
-    ctx := context.Background()    
-    req := shared.OrganizationInput{
+    ctx := context.Background()
+    res, err := s.Organizations.Update(ctx, shared.OrganizationInput{
         Organization: shared.OrganizationInputOrganization{
             AddressLine1: lago.String("address1"),
             AddressLine2: lago.String("address2"),
@@ -60,9 +60,7 @@ func main() {
             WebhookURL: lago.String("https://example.com"),
             Zipcode: lago.String("10000"),
         },
-    }
-
-    res, err := s.Organizations.Update(ctx, req)
+    })
     if err != nil {
         log.Fatal(err)
     }
