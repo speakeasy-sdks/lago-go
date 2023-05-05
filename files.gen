@@ -64,13 +64,13 @@ pkg/models/operations/findevent.go
 pkg/models/operations/findfee.go
 pkg/models/operations/findallfees.go
 pkg/models/operations/updatefee.go
-pkg/models/operations/downloadinvoice.go
+pkg/models/operations/refreshinvoice.go
+pkg/models/operations/retrypayment.go
 pkg/models/operations/finalizeinvoice.go
+pkg/models/operations/downloadinvoice.go
+pkg/models/operations/updateinvoice.go
 pkg/models/operations/findinvoice.go
 pkg/models/operations/findallinvoices.go
-pkg/models/operations/retrypayment.go
-pkg/models/operations/updateinvoice.go
-pkg/models/operations/refreshinvoice.go
 pkg/models/operations/updateorganization.go
 pkg/models/operations/createplan.go
 pkg/models/operations/destroyplan.go
@@ -146,8 +146,8 @@ pkg/models/shared/invoice.go
 pkg/models/shared/invoiceobject.go
 pkg/models/shared/subscriptionobject.go
 pkg/models/shared/invoicemetadataobject.go
-pkg/models/shared/invoices.go
 pkg/models/shared/invoiceinput.go
+pkg/models/shared/invoices.go
 pkg/models/shared/organization.go
 pkg/models/shared/organizationobject.go
 pkg/models/shared/billingconfigurationorganization.go

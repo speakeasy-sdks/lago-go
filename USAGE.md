@@ -17,7 +17,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Invoices.Find(ctx, operations.FindInvoiceRequest{
+    res, err := s.Invoices.Void(ctx, operations.FindInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
     })
     if err != nil {

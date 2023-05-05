@@ -34,81 +34,12 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 	}
 }
 
-// Download - Download an existing invoice
-// Download an existing invoice
+// Refresh - Refresh a draft invoice
+// Refresh a draft invoice
 
-func (s *invoices) Download(ctx context.Context, request operations.DownloadInvoiceRequest) (*operations.DownloadInvoiceResponse, error) {
+func (s *invoices) Refresh(ctx context.Context, request operations.RefreshInvoiceRequest) (*operations.RefreshInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/download", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.DownloadInvoiceResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Invoice
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.Invoice = out
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseUnauthorized
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseUnauthorized = out
-		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseNotFound
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseNotFound = out
-		}
-	}
-
-	return res, nil
-}
-
-// Finalize - Finalize a draft invoice
-// Finalize a draft invoice
-
-func (s *invoices) Finalize(ctx context.Context, request operations.FinalizeInvoiceRequest) (*operations.FinalizeInvoiceResponse, error) {
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/finalize", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/refresh", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -131,7 +62,7 @@ func (s *invoices) Finalize(ctx context.Context, request operations.FinalizeInvo
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.FinalizeInvoiceResponse{
+	res := &operations.RefreshInvoiceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -166,135 +97,6 @@ func (s *invoices) Finalize(ctx context.Context, request operations.FinalizeInvo
 			}
 
 			res.APIResponseNotFound = out
-		}
-	}
-
-	return res, nil
-}
-
-// Find - Find invoice by ID
-// Return a single invoice
-
-func (s *invoices) Find(ctx context.Context, request operations.FindInvoiceRequest) (*operations.FindInvoiceResponse, error) {
-	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error generating URL: %w", err)
-	}
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.FindInvoiceResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Invoice
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.Invoice = out
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseUnauthorized
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseUnauthorized = out
-		}
-	case httpRes.StatusCode == 404:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseNotFound
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseNotFound = out
-		}
-	}
-
-	return res, nil
-}
-
-// FindAll - Find all invoices
-// Find all invoices in certain organisation
-
-func (s *invoices) FindAll(ctx context.Context, request operations.FindAllInvoicesRequest) (*operations.FindAllInvoicesResponse, error) {
-	baseURL := s.serverURL
-	url := strings.TrimSuffix(baseURL, "/") + "/invoices"
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.securityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-	defer httpRes.Body.Close()
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.FindAllInvoicesResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.Invoices
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.Invoices = out
-		}
-	case httpRes.StatusCode == 401:
-		switch {
-		case utils.MatchContentType(contentType, `application/json`):
-			var out *shared.APIResponseUnauthorized
-			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
-				return nil, err
-			}
-
-			res.APIResponseUnauthorized = out
 		}
 	}
 
@@ -371,10 +173,148 @@ func (s *invoices) Retry(ctx context.Context, request operations.RetryPaymentReq
 	return res, nil
 }
 
-// Update - Update an existing invoice status
+// Void - Finalize a draft invoice
+// Finalize a draft invoice
+
+func (s *invoices) Void(ctx context.Context, request operations.FinalizeInvoiceRequest) (*operations.FinalizeInvoiceResponse, error) {
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/finalize", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.FinalizeInvoiceResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Invoice
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Invoice = out
+		}
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseUnauthorized
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseUnauthorized = out
+		}
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseNotFound
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseNotFound = out
+		}
+	}
+
+	return res, nil
+}
+
+// Void - Download an existing invoice
+// Download an existing invoice
+
+func (s *invoices) Void(ctx context.Context, request operations.DownloadInvoiceRequest) (*operations.DownloadInvoiceResponse, error) {
+	baseURL := s.serverURL
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/download", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.DownloadInvoiceResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Invoice
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Invoice = out
+		}
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseUnauthorized
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseUnauthorized = out
+		}
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseNotFound
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseNotFound = out
+		}
+	}
+
+	return res, nil
+}
+
+// Void - Update an existing invoice status
 // Update an existing invoice
 
-func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceRequest) (*operations.UpdateInvoiceResponse, error) {
+func (s *invoices) Void(ctx context.Context, request operations.UpdateInvoiceRequest) (*operations.UpdateInvoiceResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
 	if err != nil {
@@ -470,17 +410,17 @@ func (s *invoices) Update(ctx context.Context, request operations.UpdateInvoiceR
 	return res, nil
 }
 
-// Void - Refresh a draft invoice
-// Refresh a draft invoice
+// Void - Find invoice by ID
+// Return a single invoice
 
-func (s *invoices) Void(ctx context.Context, request operations.RefreshInvoiceRequest) (*operations.RefreshInvoiceResponse, error) {
+func (s *invoices) Void(ctx context.Context, request operations.FindInvoiceRequest) (*operations.FindInvoiceResponse, error) {
 	baseURL := s.serverURL
-	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/refresh", request, nil)
+	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -498,7 +438,7 @@ func (s *invoices) Void(ctx context.Context, request operations.RefreshInvoiceRe
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.RefreshInvoiceResponse{
+	res := &operations.FindInvoiceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
@@ -533,6 +473,66 @@ func (s *invoices) Void(ctx context.Context, request operations.RefreshInvoiceRe
 			}
 
 			res.APIResponseNotFound = out
+		}
+	}
+
+	return res, nil
+}
+
+// Void - Find all invoices
+// Find all invoices in certain organisation
+
+func (s *invoices) Void(ctx context.Context, request operations.FindAllInvoicesRequest) (*operations.FindAllInvoicesResponse, error) {
+	baseURL := s.serverURL
+	url := strings.TrimSuffix(baseURL, "/") + "/invoices"
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
+	client := s.securityClient
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+	defer httpRes.Body.Close()
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.FindAllInvoicesResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.Invoices
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.Invoices = out
+		}
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out *shared.APIResponseUnauthorized
+			if err := utils.UnmarshalJsonFromResponseBody(httpRes.Body, &out); err != nil {
+				return nil, err
+			}
+
+			res.APIResponseUnauthorized = out
 		}
 	}
 

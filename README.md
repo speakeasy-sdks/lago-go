@@ -36,7 +36,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Invoices.Find(ctx, operations.FindInvoiceRequest{
+    res, err := s.Invoices.Void(ctx, operations.FindInvoiceRequest{
         ID: "1a901a90-1a90-1a90-1a90-1a901a901a90",
     })
     if err != nil {
@@ -116,13 +116,13 @@ func main() {
 
 ### [Invoices](docs/invoices/README.md)
 
-* [Download](docs/invoices/README.md#download) - Download an existing invoice
-* [Finalize](docs/invoices/README.md#finalize) - Finalize a draft invoice
-* [Find](docs/invoices/README.md#find) - Find invoice by ID
-* [FindAll](docs/invoices/README.md#findall) - Find all invoices
+* [Refresh](docs/invoices/README.md#refresh) - Refresh a draft invoice
 * [Retry](docs/invoices/README.md#retry) - Retry invoice payment
-* [Update](docs/invoices/README.md#update) - Update an existing invoice status
-* [Void](docs/invoices/README.md#void) - Refresh a draft invoice
+* [Void](docs/invoices/README.md#void) - Finalize a draft invoice
+* [Void](docs/invoices/README.md#void) - Download an existing invoice
+* [Void](docs/invoices/README.md#void) - Update an existing invoice status
+* [Void](docs/invoices/README.md#void) - Find invoice by ID
+* [Void](docs/invoices/README.md#void) - Find all invoices
 
 ### [Organizations](docs/organizations/README.md)
 
