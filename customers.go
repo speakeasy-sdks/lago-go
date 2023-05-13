@@ -36,7 +36,6 @@ func newCustomers(defaultClient, securityClient HTTPClient, serverURL, language,
 
 // Create - Create a customer
 // Create a new customer
-
 func (s *customers) Create(ctx context.Context, request shared.CustomerInput) (*operations.CreateCustomerResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/customers"
@@ -122,7 +121,6 @@ func (s *customers) Create(ctx context.Context, request shared.CustomerInput) (*
 
 // CurrentUsage - Find customer current usage
 // Return a customer current usage
-
 func (s *customers) CurrentUsage(ctx context.Context, request operations.FindCustomerCurrentUsageRequest) (*operations.FindCustomerCurrentUsageResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/current_usage", request, nil)
@@ -195,7 +193,6 @@ func (s *customers) CurrentUsage(ctx context.Context, request operations.FindCus
 
 // DeleteAppliedCoupon - Delete customer's appplied coupon
 // Delete customer's appplied coupon
-
 func (s *customers) DeleteAppliedCoupon(ctx context.Context, request operations.DeleteAppliedCouponRequest) (*operations.DeleteAppliedCouponResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/applied_coupons/{applied_coupon_id}", request, nil)
@@ -264,7 +261,6 @@ func (s *customers) DeleteAppliedCoupon(ctx context.Context, request operations.
 
 // Destroy - Delete a customer
 // Return the deleted customer
-
 func (s *customers) Destroy(ctx context.Context, request operations.DeleteCustomerRequest) (*operations.DeleteCustomerResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{external_id}", request, nil)
@@ -333,7 +329,6 @@ func (s *customers) Destroy(ctx context.Context, request operations.DeleteCustom
 
 // Find - Find customer by external ID
 // Return a single customer
-
 func (s *customers) Find(ctx context.Context, request operations.FindCustomerRequest) (*operations.FindCustomerResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{external_id}", request, nil)
@@ -402,7 +397,6 @@ func (s *customers) Find(ctx context.Context, request operations.FindCustomerReq
 
 // FindAll - Find customers
 // Find all customers in certain organisation
-
 func (s *customers) FindAll(ctx context.Context, request operations.FindAllCustomersRequest) (*operations.FindAllCustomersResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/customers"
@@ -462,7 +456,6 @@ func (s *customers) FindAll(ctx context.Context, request operations.FindAllCusto
 
 // PortalURL - Get customer portal URL
 // Get customer portal URL
-
 func (s *customers) PortalURL(ctx context.Context, request operations.GetCustomerPortalURLRequest) (*operations.GetCustomerPortalURLResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/customers/{customer_external_id}/portal_url", request, nil)

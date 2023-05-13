@@ -36,7 +36,6 @@ func newInvoices(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // Refresh - Refresh a draft invoice
 // Refresh a draft invoice
-
 func (s *invoices) Refresh(ctx context.Context, request operations.RefreshInvoiceRequest) (*operations.RefreshInvoiceResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/refresh", request, nil)
@@ -105,7 +104,6 @@ func (s *invoices) Refresh(ctx context.Context, request operations.RefreshInvoic
 
 // Retry - Retry invoice payment
 // Retry invoice payment
-
 func (s *invoices) Retry(ctx context.Context, request operations.RetryPaymentRequest) (*operations.RetryPaymentResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/retry_payment", request, nil)
@@ -175,7 +173,6 @@ func (s *invoices) Retry(ctx context.Context, request operations.RetryPaymentReq
 
 // Void - Finalize a draft invoice
 // Finalize a draft invoice
-
 func (s *invoices) Void(ctx context.Context, request operations.FinalizeInvoiceRequest) (*operations.FinalizeInvoiceResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/finalize", request, nil)
@@ -244,7 +241,6 @@ func (s *invoices) Void(ctx context.Context, request operations.FinalizeInvoiceR
 
 // Void - Download an existing invoice
 // Download an existing invoice
-
 func (s *invoices) Void(ctx context.Context, request operations.DownloadInvoiceRequest) (*operations.DownloadInvoiceResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}/download", request, nil)
@@ -313,7 +309,6 @@ func (s *invoices) Void(ctx context.Context, request operations.DownloadInvoiceR
 
 // Void - Update an existing invoice status
 // Update an existing invoice
-
 func (s *invoices) Void(ctx context.Context, request operations.UpdateInvoiceRequest) (*operations.UpdateInvoiceResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
@@ -412,7 +407,6 @@ func (s *invoices) Void(ctx context.Context, request operations.UpdateInvoiceReq
 
 // Void - Find invoice by ID
 // Return a single invoice
-
 func (s *invoices) Void(ctx context.Context, request operations.FindInvoiceRequest) (*operations.FindInvoiceResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/invoices/{id}", request, nil)
@@ -481,7 +475,6 @@ func (s *invoices) Void(ctx context.Context, request operations.FindInvoiceReque
 
 // Void - Find all invoices
 // Find all invoices in certain organisation
-
 func (s *invoices) Void(ctx context.Context, request operations.FindAllInvoicesRequest) (*operations.FindAllInvoicesResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/invoices"

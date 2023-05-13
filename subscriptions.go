@@ -36,7 +36,6 @@ func newSubscriptions(defaultClient, securityClient HTTPClient, serverURL, langu
 
 // Create - Assign a plan to a customer
 // Assign a plan to a customer
-
 func (s *subscriptions) Create(ctx context.Context, request shared.SubscriptionCreateInput) (*operations.CreateSubscriptionResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/subscriptions"
@@ -132,7 +131,6 @@ func (s *subscriptions) Create(ctx context.Context, request shared.SubscriptionC
 
 // Destroy - Terminate a subscription
 // Terminate a subscription
-
 func (s *subscriptions) Destroy(ctx context.Context, request operations.DestroySubscriptionRequest) (*operations.DestroySubscriptionResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/subscriptions/{external_id}", request, nil)
@@ -211,7 +209,6 @@ func (s *subscriptions) Destroy(ctx context.Context, request operations.DestroyS
 
 // FindAll - Find subscriptions
 // Find all suscriptions for certain customer
-
 func (s *subscriptions) FindAll(ctx context.Context, request operations.FindAllSubscriptionsRequest) (*operations.FindAllSubscriptionsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/subscriptions"
@@ -281,7 +278,6 @@ func (s *subscriptions) FindAll(ctx context.Context, request operations.FindAllS
 
 // Update - Update an existing subscription
 // Update an existing subscription by external ID
-
 func (s *subscriptions) Update(ctx context.Context, request operations.UpdateSubscriptionRequest) (*operations.UpdateSubscriptionResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/subscriptions/{external_id}", request, nil)

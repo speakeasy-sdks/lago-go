@@ -36,7 +36,6 @@ func newBillableMetrics(defaultClient, securityClient HTTPClient, serverURL, lan
 
 // Create - Create a new billable metric
 // Create a new billable metric
-
 func (s *billableMetrics) Create(ctx context.Context, request shared.BillableMetricInput) (*operations.CreateBillableMetricResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/billable_metrics"
@@ -122,7 +121,6 @@ func (s *billableMetrics) Create(ctx context.Context, request shared.BillableMet
 
 // Destroy - Delete a billable metric
 // Delete a billable metric
-
 func (s *billableMetrics) Destroy(ctx context.Context, request operations.DestroyBillableMetricRequest) (*operations.DestroyBillableMetricResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/billable_metrics/{code}", request, nil)
@@ -191,7 +189,6 @@ func (s *billableMetrics) Destroy(ctx context.Context, request operations.Destro
 
 // Find - Find billable metric by code
 // Return a single billable metric
-
 func (s *billableMetrics) Find(ctx context.Context, request operations.FindBillableMetricRequest) (*operations.FindBillableMetricResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/billable_metrics/{code}", request, nil)
@@ -260,7 +257,6 @@ func (s *billableMetrics) Find(ctx context.Context, request operations.FindBilla
 
 // FindAll - Find Billable metrics
 // Find all billable metrics in certain organisation
-
 func (s *billableMetrics) FindAll(ctx context.Context, request operations.FindAllBillableMetricsRequest) (*operations.FindAllBillableMetricsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/billable_metrics"
@@ -320,7 +316,6 @@ func (s *billableMetrics) FindAll(ctx context.Context, request operations.FindAl
 
 // FindAllGroups - Find Billable metric groups
 // Find all billable metric groups in certain organisation
-
 func (s *billableMetrics) FindAllGroups(ctx context.Context, request operations.FindAllBillableMetricGroupsRequest) (*operations.FindAllBillableMetricGroupsResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/billable_metrics/{code}/groups", request, nil)
@@ -383,7 +378,6 @@ func (s *billableMetrics) FindAllGroups(ctx context.Context, request operations.
 
 // Update - Update an existing billable metric
 // Update an existing billable metric by code
-
 func (s *billableMetrics) Update(ctx context.Context, request operations.UpdateBillableMetricRequest) (*operations.UpdateBillableMetricResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/billable_metrics/{code}", request, nil)

@@ -36,7 +36,6 @@ func newWallets(defaultClient, securityClient HTTPClient, serverURL, language, s
 
 // Create - Create a new wallet
 // Create a new wallet
-
 func (s *wallets) Create(ctx context.Context, request shared.WalletInput) (*operations.CreateWalletResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/wallets"
@@ -122,7 +121,6 @@ func (s *wallets) Create(ctx context.Context, request shared.WalletInput) (*oper
 
 // CreateTransaction - Create a new wallet transaction
 // Create a new wallet transaction
-
 func (s *wallets) CreateTransaction(ctx context.Context, request shared.WalletTransactionInput) (*operations.CreateWalletTransactionResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/wallet_transactions"
@@ -208,7 +206,6 @@ func (s *wallets) CreateTransaction(ctx context.Context, request shared.WalletTr
 
 // Destroy - Delete a wallet
 // Delete a wallet
-
 func (s *wallets) Destroy(ctx context.Context, request operations.DestroyWalletRequest) (*operations.DestroyWalletResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
@@ -287,7 +284,6 @@ func (s *wallets) Destroy(ctx context.Context, request operations.DestroyWalletR
 
 // Find - Find wallet
 // Return a wallet
-
 func (s *wallets) Find(ctx context.Context, request operations.FindWalletRequest) (*operations.FindWalletResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)
@@ -356,7 +352,6 @@ func (s *wallets) Find(ctx context.Context, request operations.FindWalletRequest
 
 // FindAll - Find wallets
 // Find all wallets for certain customer
-
 func (s *wallets) FindAll(ctx context.Context, request operations.FindAllWalletsRequest) (*operations.FindAllWalletsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/wallets"
@@ -416,7 +411,6 @@ func (s *wallets) FindAll(ctx context.Context, request operations.FindAllWallets
 
 // FindAllTransactions - Find wallet transactions
 // Find all wallet transactions for certain wallet
-
 func (s *wallets) FindAllTransactions(ctx context.Context, request operations.FindAllWalletTransactionsRequest) (*operations.FindAllWalletTransactionsResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}/wallet_transactions", request, nil)
@@ -489,7 +483,6 @@ func (s *wallets) FindAllTransactions(ctx context.Context, request operations.Fi
 
 // Update - Update an existing wallet
 // Update an existing wallet
-
 func (s *wallets) Update(ctx context.Context, request operations.UpdateWalletRequest) (*operations.UpdateWalletResponse, error) {
 	baseURL := s.serverURL
 	url, err := utils.GenerateURL(ctx, baseURL, "/wallets/{id}", request, nil)

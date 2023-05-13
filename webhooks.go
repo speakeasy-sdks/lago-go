@@ -37,7 +37,6 @@ func newWebhooks(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // FetchPublicKey - Fetch webhook public key
 // Webhook public key
-
 func (s *webhooks) FetchPublicKey(ctx context.Context) (*operations.FetchPublicKeyResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/webhooks/public_key"
